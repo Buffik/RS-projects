@@ -1,0 +1,18 @@
+@import 'base/normalize';
+@import 'abstract/variables.scss';
+@import 'base/typography';
+@import 'abstract/mixins';
+@import 'abstract/placeholders';
+
+html {
+  height: 100vh;
+  background: $color-main-gradient, no-repeat;
+}
+
+
+h1 {
+  font-size: 100px;
+  &:hover {
+    color: $color-primary;
+  }
+}

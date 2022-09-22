@@ -1,0 +1,129 @@
+//font, Roboto
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+
+//icon-font
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?oslpyg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?oslpyg#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?oslpyg') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?oslpyg') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?oslpyg##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"]::before, [class*=" icon-"]::before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo {
+  &:before {
+    content: $icon-logo; 
+  }
+}
+.icon-alligator {
+  &:before {
+    content: $icon-alligator; 
+  }
+}
+.icon-back_arrow {
+  &:before {
+    content: $icon-back_arrow; 
+  }
+}
+.icon-cheetah_small {
+  &:before {
+    content: $icon-cheetah_small; 
+  }
+}
+.icon-dollar {
+  &:before {
+    content: $icon-dollar; 
+  }
+}
+.icon-eagle {
+  &:before {
+    content: $icon-eagle; 
+  }
+}
+.icon-forward_arrow {
+  &:before {
+    content: $icon-forward_arrow; 
+  }
+}
+.icon-gorilla {
+  &:before {
+    content: $icon-gorilla; 
+  }
+}
+.icon-hand {
+  &:before {
+    content: $icon-hand; 
+  }
+}
+.icon-insta {
+  &:before {
+    content: $icon-insta; 
+  }
+}
+.icon-minus {
+  &:before {
+    content: $icon-minus; 
+  }
+}
+.icon-monkey {
+  &:before {
+    content: $icon-monkey; 
+  }
+}
+.icon-open_arrow {
+  &:before {
+    content: $icon-open_arrow; 
+  }
+}
+.icon-panda {
+  &:before {
+    content: $icon-panda; 
+  }
+}
+.icon-pay {
+  &:before {
+    content: $icon-pay; 
+  }
+}
+.icon-penguin_small {
+  &:before {
+    content: $icon-penguin_small; 
+  }
+}
+.icon-plus {
+  &:before {
+    content: $icon-plus; 
+  }
+}
+.icon-sloth_small {
+  &:before {
+    content: $icon-sloth_small; 
+  }
+}
+.icon-user {
+  &:before {
+    content: $icon-user; 
+  }
+}
+
