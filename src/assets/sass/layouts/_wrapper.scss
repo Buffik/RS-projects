@@ -1,0 +1,23 @@
+.wrapper {
+    max-width: $wrapper-width;
+    margin: auto;
+}
+
+.container {
+    max-width: $content-width;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    height: 100%;
+    @include media-laptop {
+        padding: 0 20px;
+    }
+    @include media-mobile {
+        padding: 0 10px;
+    }
+}
+
+.header__2-columns {
+    @include columns(auto);
+    align-items: center;
+}

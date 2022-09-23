@@ -1,0 +1,35 @@
+.footer__content {
+    height: 65px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include media-small-tablet {
+        justify-content: center;
+    }
+    &::before {
+        content: "";
+        width: 12%;
+        display: block;
+        @include media-small-tablet {
+            display: none;
+        }
+    }
+}
+
+.footer__text {
+    color: $color-link;
+    @extend %font-add;
+    @include font($size: 1.6rem, $height: 2.117rem, $weight: 500);
+    @include media-small-tablet {
+        display: none;
+    }
+}
+
+.icons__navigation {
+    display: flex;
+    align-items: center;
+    & > li:not(:last-child) {
+        margin: 0 20px 0 0;
+    }
+}

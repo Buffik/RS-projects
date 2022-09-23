@@ -1,18 +1,20 @@
 @import 'base/normalize';
+
+//Abstract
 @import 'abstract/variables.scss';
-@import 'base/typography';
 @import 'abstract/mixins';
 @import 'abstract/placeholders';
 
-html {
-  height: 100vh;
-  background: $color-main-gradient, no-repeat;
-}
+//Base
+@import 'base/typography';
+@import 'base/buttons';
+@import 'base/hamburger';
+@import 'base/logo';
+@import 'base/base';
 
+//Layouts
+@import 'layouts/header';
+@import 'layouts/wrapper';
 
-h1 {
-  font-size: 100px;
-  &:hover {
-    color: $color-primary;
-  }
-}
+//components
+@import 'components/index/header'

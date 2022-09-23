@@ -1,0 +1,38 @@
+.header {
+    position: relative;
+    z-index: 2;
+    background: $color-header;
+    @include font(16px, 140%, 500)
+}
+
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 617px;
+    width: 100%;
+    align-items: center;
+    padding: 14px 0;
+}
+
+.header__menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 472px;
+}
+
+.menu__list {
+    @include columns(auto);
+    width: 100%;
+}
+
+.menu__link {
+    color: $color-font-header;
+}
+
+
+
+
+.author {
+    color: $color-font-header;
+}
