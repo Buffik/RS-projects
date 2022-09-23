@@ -1,3 +1,7 @@
 .active {
-  color: $color-primary;
+  color: $color-active;
+  cursor: default;
+  &:hover {
+    color: $color-active;
+  }
 }

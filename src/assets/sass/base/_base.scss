@@ -1,7 +1,8 @@
 html {
     font-size: 10px;
     background-color: $color-main-background;
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
+    @extend %transition;
 }
 
 body {

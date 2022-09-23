@@ -2,7 +2,8 @@
     position: relative;
     z-index: 2;
     background: $color-header;
-    @include font(16px, 140%, 500)
+    @include font(16px, 140%, 500);
+    @extend %transition;
 }
 
 .header__wrapper {
@@ -19,6 +20,7 @@
     justify-content: space-between;
     width: 100%;
     max-width: 472px;
+    @extend %transition;
 }
 
 .menu__list {
@@ -28,11 +30,17 @@
 
 .menu__link {
     color: $color-font-header;
+    @extend %transition;
+    &:hover {
+        color: $color-hovered;
+    }
+
 }
-
-
-
 
 .author {
     color: $color-font-header;
+    @extend %transition;
+    &:hover {
+        color: $color-hovered;
+    }
 }

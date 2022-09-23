@@ -1,0 +1,45 @@
+.watch-animal {
+  background-color: #283035;
+  background-image: url('../images/Giant_Panda.jpg');
+  background-repeat: no-repeat;
+  background-position: top -80px center;
+  height: 700px;
+}
+
+.watch-animal__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.watch-animal__title {
+  position: relative;
+  z-index: 2;
+  margin: 84px 0 0 660px;
+  max-width: 500px;
+  @include font($size: 10.65rem, $height: 7.987rem, $weight: 700);
+  text-align: center;
+  color: $color-font-header;
+  text-transform: uppercase;
+  & span {
+    color: $color-heading;
+  }
+}
+
+.title-background {
+  display: block;
+  z-index: 1;
+  margin: 10px 0 0 586px;
+  position: absolute;
+  width: 465px;
+  height: 465px;
+  border-radius: 50%;
+  background-color: $color-primary;
+  top: 0;
+}
+
+.watch-animal__button {
+  margin: 61px 0 0 765px;
+  
+}
+

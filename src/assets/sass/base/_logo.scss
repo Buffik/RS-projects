@@ -2,4 +2,8 @@
     font-size: 52px;
     color: $color-font-header;
     text-align: center;
+    @extend %transition;
+    &:hover {
+        color: $color-hovered;
+    }
 }
