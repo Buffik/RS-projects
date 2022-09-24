@@ -1,0 +1,144 @@
+.pets {
+  height: 1106px;
+  background: url('../images/palm_pfoto.png') no-repeat left bottom, url('../images/strelitzia.png') no-repeat right bottom;
+}
+
+.pets__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.pets__container {
+  flex-wrap: wrap;
+  width: auto;
+  margin: 0 20px;
+  row-gap: 15px;
+  column-gap: 28px;
+}
+
+.pets-info__wrapper {
+  height: 426px;
+  position: relative;
+  transition: 3s linear;
+  border: 1px solid #FA6F32;
+  border-radius: 5px;
+  overflow: hidden;
+  &:hover {
+    cursor: pointer;
+    .pets__img {
+      background-size: 376px 376px;
+    }
+    .pets__food-icon {
+      display: none;
+    }
+    .pets__info {
+      @extend %transition;
+      margin: 0;
+      top: 0;
+      left: 0;
+      transform: translateY(0);
+      position: absolute;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      color: #FFFFFF;
+    }
+  }
+}
+
+.pets__img {
+  width: 366px;
+  height: 366px;
+  &-panda {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_panda.jpg') no-repeat center;
+    background-size: 367px 367px;
+  }
+  &-eagle {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_eagle.jpg') no-repeat center;
+    background-size: 367px 367px;
+  }
+  &-gorilla {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_gorilla.jpg') no-repeat center;
+    background-size: 367px 367px;
+  }
+  &-sloth {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_sloth.jpg') no-repeat center;
+    background-size: 367px 367px;
+  }
+  &-cheetah {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_cheetah.jpg') no-repeat center;
+    background-size: 367px 367px;
+  }
+  &-penguin {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_penguin.jpg') no-repeat center;
+    background-size: 367px 367px;
+  }
+}
+
+
+.pets__info {
+  position: absolute;
+  left: 16px;
+  top: 373px;
+  width: 100%;
+  display: flex;
+  height: 430px;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 338px;
+}
+
+.pets__title {
+  @include font($size: 1.6rem, $height: 140%, $weight:500);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.pets__subtitle {
+  @include font($size: 1.5rem, $height: 120%, $weight:300);
+}
+
+
+.vegan {
+  background: url('../icons/banana-bamboo.svg') no-repeat;
+  height: 37px;
+  width: 33px;
+}
+
+
+.hunter {
+  background: url('../icons/meet-fish.svg') no-repeat;
+  height: 38px;
+  width: 48px;
+}
+
+.pets__button {
+  margin: auto;
+  display: block;
+}
+
+.arrow {
+  padding-top: 7px;
+  color: $color-font-header;
+  width: 62px;
+  height: 62px;
+  border: none;
+  border-radius: 50%;
+  background-color: $color-primary;
+  &:hover {
+    @extend %transition;
+    background-color: $color-hovered;
+  }
+}
