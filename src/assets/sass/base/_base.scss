@@ -29,7 +29,7 @@ h2 {
 h3 {
     margin: 0;
     // color: $color-primary;
-    @include font($size: 3.5rem, $height: 4.2rem, $weight:400);
+    @include font($size: 3.6rem, $height: 4.2rem, $weight:400);
     @include media-tablet {
         @include font($size: 2rem, $height: 2.7rem, $weight:700);
     }

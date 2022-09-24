@@ -1,0 +1,112 @@
+.pick {
+  background: $color-main-gradient;
+  background-size: cover;
+  opacity: 0.9;
+  height: 100%;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__container {
+    color: $color-font-main;
+    margin: 69px auto 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(253, 253, 255, 0.52);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+  }
+
+  &__text-wrapper {
+    padding-left: 35px;
+  }
+
+  &__title {
+    color: $color-primary;
+    margin: 41px auto 30px auto;
+  }
+
+  &__subtitle {
+    @include font($size: 2.4rem, $height: 120%, $weight:400);
+    margin-bottom: 40px;
+  }
+
+  &__info {
+    @include font($size: 1.6rem, $height: 130%, $weight:500);
+    margin-bottom: 10px;
+  }
+
+  &__subinfo {
+    @include font($size: 1.6rem, $height: 130%, $weight:400);
+    max-width: 863px;
+    margin-bottom: 60px;
+  }
+
+  &__link {
+    color: $color-font-main;
+    border-bottom: 1px solid $color-primary;;
+    padding-bottom: 1px;
+    &:hover {
+      @extend %transition;
+      color: $color-hovered;
+      border-bottom-color: $color-hovered;
+    }
+  }
+
+  &__h3 {
+    margin-bottom: 45px;
+  }
+
+  &__pay-container {
+    @include columns(auto);
+    max-width: 764px;
+    width: 100%;
+    margin-bottom: 65px;
+  }
+
+  &__pay-step {
+    max-width: 169px;
+  }
+
+  &__button {
+    margin-bottom: 60px;
+  }
+}
+
+.pay-step__icon {
+  width: 168px;
+  height: 168px;
+  background-color: #FFFFFF;
+  border: 1px solid $color-primary;
+  border-radius: 5px;
+  text-align: center;
+  text-justify: center;
+  margin-bottom: 30px;
+}
+
+.icon-pay {
+  font-size: 60px;
+  padding-top: 54px;
+}
+
+.icon-hand {
+  font-size: 96px;
+  padding-top: 43px;
+}
+
+.icon-monkey {
+  font-size: 74px;
+  padding-top: 50px;
+}
+
+.pay__arrow {
+  margin-top: 62px;
+  width: 69px;
+  height: 35px;
+  background: url('../icons/big_arrow.svg') no-repeat;
+  background-size: 69px 35px;
+}

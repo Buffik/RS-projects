@@ -1,5 +1,6 @@
 .button {
-    padding: 15px 0;
+    display: block;
+    padding: 15px 73px;
     @include font($size: 1.6rem, $height: 140%, $weight: 500);
     text-transform: uppercase;
     text-align: center;
