@@ -1,0 +1,48 @@
+.backstage {
+  background-image: url('../images/flower_foto1.png');
+  background-repeat: no-repeat;
+  background-position: right -40px top 10px;
+  height: 675px;
+}
+
+.backstage__wrapper {
+  height: 100%;
+  align-items: center
+}
+
+.backstage__container {
+  @include columns(auto);
+  align-items: center;
+}
+
+.backstage__img {
+  background-image: url('../images/bamboo-cap.jpg');
+  background-repeat: no-repeat;
+  height: 403px;
+  width: 609px;
+}
+
+.backstage__info {
+  max-width: 465px;
+  @include columns(auto);
+  justify-content: start;
+  flex-direction: column;
+  height: 100%;
+  max-height: 403px;
+}
+
+.backstage__title {
+  margin-bottom: 24px;
+  &-info {
+    margin-bottom: 55px;
+  }
+}
+
+
+.backstage__subtitle {
+  @include font($size: 2.4rem, $height: 120%, $weight:400);
+  margin-bottom: 34px;
+}
+
+
+
