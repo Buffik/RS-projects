@@ -1,2 +1,2 @@
 console.log('index')
-import '../../assets/sass/style.scss'
+import '../../assets/sass/index.scss'

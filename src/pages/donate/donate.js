@@ -1,2 +1,2 @@
 console.log('donate')
-import '../../assets/sass/style.scss'
+import '../../assets/sass/donate.scss'

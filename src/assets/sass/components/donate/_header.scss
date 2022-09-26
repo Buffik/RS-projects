@@ -1,0 +1,7 @@
+.active {
+  color: $color-active;
+  cursor: default;
+  &:hover {
+    color: $color-active;
+  }
+}
