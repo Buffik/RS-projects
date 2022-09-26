@@ -106,9 +106,16 @@
   }
 
   &__author {
+    @extend %transition;
     color: $color-font-header;
+    border-bottom: 1px solid transparent;
     @include font($size: 1.6rem, $height: 170%, $weight: 100);
+    &:hover {
+      color: $color-clicked;
+      border-bottom: 1px solid $color-clicked;
+    }
   }
+
 }
 
 .social {
