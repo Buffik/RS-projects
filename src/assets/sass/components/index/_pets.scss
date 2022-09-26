@@ -15,7 +15,7 @@
   width: auto;
   margin: 0 20px;
   row-gap: 15px;
-  column-gap: 28px;
+  column-gap: 27px;
 }
 
 .pets-info__wrapper {
@@ -141,4 +141,7 @@
     @extend %transition;
     background-color: $color-hovered;
   }
+  &:active {
+    background-color: $color-clicked;
+}
 }
