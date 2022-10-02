@@ -42,7 +42,10 @@
 }
 .icon-back_arrow {
   &:before {
-    content: $icon-back_arrow; 
+    content: $icon-back_arrow;
+    @include media-small-desktop {
+      font-size: 1rem;
+    }
   }
 }
 .icon-cheetah_small {
@@ -63,6 +66,9 @@
 .icon-forward_arrow {
   &:before {
     content: $icon-forward_arrow; 
+    @include media-small-desktop {
+      font-size: 1rem;
+    }
   }
 }
 .icon-gorilla {

@@ -4,6 +4,9 @@
     background: $color-header;
     @include font(16px, 140%, 500);
     @extend %transition;
+    @include media-small-desktop {
+        max-height: 80px;
+    }
 }
 
 .header__wrapper {
@@ -13,6 +16,9 @@
     width: 100%;
     align-items: center;
     padding: 14px 0;
+    @include media-small-desktop {
+        max-width: 576px;
+    }
 }
 
 .header__menu {
@@ -21,6 +27,9 @@
     width: 100%;
     max-width: 472px;
     @extend %transition;
+    @include media-small-desktop {
+        max-width: 431px;
+    }
 }
 
 .menu__list {

@@ -4,6 +4,17 @@
   background-repeat: no-repeat;
   background-position: top -80px center;
   height: 700px;
+  @include media-small-desktop {
+    background-size: 1198px 584px;
+    background-position: top -80px center;
+    height: 504px;
+    margin-bottom: 90px;
+  }
+  @media (max-width: 1000px) {
+    background-size: 1198px 584px;
+    background-position: top -80px left -100px;
+    height: 504px
+  }
 }
 
 .watch-animal__container {
@@ -24,6 +35,10 @@
   & span {
     color: $color-heading;
   }
+  @include media-small-desktop {
+    @include font($size: 8.5rem, $height: 75%, $weight: 700);
+    margin: 43px 0 0 435px;
+  }
 }
 
 .title-background {
@@ -36,10 +51,17 @@
   border-radius: 50%;
   background-color: $color-primary;
   top: 0;
+  @include media-small-desktop {
+    margin: -10px 0 0 426px;
+    width: 367px;
+    height: 367px;
+  }
 }
 
 .watch-animal__button {
   margin: 61px 0 0 765px;
-  
+  @include media-small-desktop {
+    margin: 42px 0 0 536px;
+  }
 }
 

@@ -4,6 +4,9 @@
   opacity: 0.9;
   height: 100%;
   margin-bottom: 140px;
+  @include media-small-desktop {
+    margin-bottom: 103px;
+  }
 
   &__wrapper {
     display: flex;
@@ -20,20 +23,33 @@
     background: rgba(253, 253, 255, 0.52);
     backdrop-filter: blur(2px);
     border-radius: 20px;
+    @include media-small-desktop {
+      margin: 30px auto 50px auto;
+    }
   }
 
   &__text-wrapper {
     padding-left: 35px;
+    @include media-small-desktop {
+      padding-left: 0;
+      max-width: 843px;
+    }
   }
 
   &__title {
     color: $color-primary;
     margin: 41px auto 30px auto;
+    @include media-small-desktop {
+      margin: 30px auto 22px auto;
+    }
   }
 
   &__subtitle {
     @include font($size: 2.4rem, $height: 120%, $weight:400);
     margin-bottom: 40px;
+    @include media-small-desktop {
+      margin-bottom: 20px;
+    }
   }
 
   &__info {
@@ -45,6 +61,9 @@
     @include font($size: 1.6rem, $height: 130%, $weight:400);
     max-width: 863px;
     margin-bottom: 60px;
+    @include media-small-desktop {
+      margin-bottom: 40px;
+    }
   }
 
   &__link {
@@ -67,6 +86,9 @@
     max-width: 764px;
     width: 100%;
     margin-bottom: 65px;
+    @include media-small-desktop {
+      margin-bottom: 75px;
+    }
   }
 
   &__pay-step {
@@ -75,6 +97,9 @@
 
   &__button {
     margin-bottom: 60px;
+    @include media-small-desktop {
+      margin-bottom: 50px;
+    }
   }
 }
 

@@ -43,13 +43,21 @@ $color-comment-location: #BDBDBD;
 $color-clicked: #4B9200;
 
 
-//device-width
+//wrappers width
 $wrapper-width: 1600px;
 $content-width: 1160px;
-$tablet-width: 850px;
-$tablet-small-width: 550px;
-$mobile-big-width: 390px;
-$mobile-small-width: 380px;
+$small-desktop-wrapper-width: 1000px;
+$small-desktop-content-width: 940px;
+$tablet-wrapper-width: 640px;
+$tablet-content-width: 600px;
+$mobile-wrapper-width: 320px;
+$mobile-content-width: 300px;
+
+
+//screen break points
+$small-desktop-width: 1599px;
+$tablet-width: 999px;
+$mobile-width: 639px;
 
 
 //donation-slider
