@@ -11,6 +11,11 @@
     max-width: 1600px;
     background-image: url('../images/donate/panda_bg.jpg');
     background-repeat: no-repeat;
+    background-position-x: center;
+    @media (max-width: 1000px) {
+      background-position-x: -170px;
+      height: 390px;
+    }
   }
 
   &__container {
@@ -22,6 +27,10 @@
     color: #FFFFFF;
     @include font($size: 3.6rem, $height: 130%, $weight:400);
     margin: 40px auto 10px auto;
+    @include media-small-desktop {
+      max-width: 780px;
+      margin: 40px 0 30px 0;
+    }
   }
 
   &__subtitle {
@@ -40,7 +49,10 @@
 .donation__title {
   margin: 0 0 60px 0;
   color: $color-primary;
-    @include font($size: 3.6rem, $height: 130%, $weight:400);
+  @include font($size: 3.6rem, $height: 130%, $weight:400);
+  @include media-small-desktop {
+    margin-bottom: 40px;
+  }
 }
 
 .donation {
@@ -49,6 +61,10 @@
     border-radius: 20px;
     padding: 40px 96px 62px 90px;
     margin-bottom: 180px;
+    @include media-small-desktop {
+      padding: 21px 44px 47px 47px;
+      margin-bottom: 28px;
+    }
   }
 
   &__title-h2 {
@@ -56,6 +72,10 @@
     @include font($size: 4.8rem, $height: 120%, $weight:400);
     text-align: center;
     margin-bottom: 20px;
+    @include media-small-desktop {
+      margin-bottom: 12px;
+      margin-right: 20px;
+    }
   }
 
   &__subtitle {
@@ -69,6 +89,9 @@
     align-items: center;
     margin-left: 217px;
     margin-bottom: 42px;
+    @include media-small-desktop {
+      margin-left: 154px;
+    }
   }
 
   &__count {
@@ -119,6 +142,11 @@
     margin: 0;
 }
   }
+
+  @include media-small-desktop {
+    max-width: 810px;
+    margin: auto;
+  }
 }
 
 .donation-amount-slider {
@@ -128,6 +156,11 @@
   width: 100%;
   height: 50px;
   user-select: none;
+  @include media-small-desktop {
+    & label:nth-of-type(1) {
+      display: none;
+    }
+  }
 
   &::before {
     content: "";
@@ -176,14 +209,63 @@
       user-select: none;
       z-index: 1;
       transition: all 0.15s ease-in-out;
+      @include media-small-desktop {
+        left: 12%;
+      }
+    }
+    @include media-small-desktop {
+      &:nth-of-type(3) {
+        &::after {
+          left: 17px;
+        }
+      }
+      &:nth-of-type(4) {
+        &::after {
+          left: 19px;
+        }
+        &::before {
+          left: 28px;
+        }
+      }
+      &:nth-of-type(5) {
+        &::after {
+          left: 20px;
+        }
+        &::before {
+          left: 28px;
+        }
+      }
+      &:nth-of-type(6) {
+        &::after {
+          left: 22px;
+        }
+        &::before {
+          left: 31px;
+        }
+      }
+      &:nth-of-type(7) {
+        &::after {
+          left: 23px;
+        }
+        &::before {
+          left: 23px;
+        }
+      }
+
     }
     &:last-of-type {
       width: 40px;
       &::after {
         left: 88%;
+        @include media-small-desktop {
+          left: 63%;
+        }
       }
       &::before {
         left: 55%;
+        @include media-small-desktop {
+          left: 65%;
+        }
       }
     }
     &:hover::after {
@@ -203,6 +285,14 @@
         &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
           display: block;
           left: #{130 * $i - 130 + 35 + 'px'};
+        }
+      }
+      @include media-small-desktop {
+        @for $i from 1 through $number-of-options-small-desktop {
+          &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
+            display: block;
+            left: #{130 * $i - 280 + 35 + 'px'};
+          }
         }
       }
     }
@@ -305,6 +395,10 @@
   width: 100%;
   label:first-of-type {
     margin-right: 50px;
+    @include media-small-desktop {
+      margin-left: -10px;
+      margin-right: 50px;
+    }
   }
   input {
     @extend %transition;
@@ -347,11 +441,14 @@
   display: block;
   margin: auto;
   padding: 16px 39px;
-    background-color: $color-primary;
-    border-radius: 25px;
-    color: $color-font-header;
-    border: 1px solid transparent;
-    &:hover {
-      background-color: $color-hovered;
-    }
+  background-color: $color-primary;
+  border-radius: 25px;
+  color: $color-font-header;
+  border: 1px solid transparent;
+  &:hover {
+    background-color: $color-hovered;
+  }
+  @include media-small-desktop {
+    margin-bottom: 28px;
+  }
 }
