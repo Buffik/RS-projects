@@ -6,6 +6,10 @@
     background-size: 195px 333px;
     background-position: right bottom -93px;
   }
+  @include media-tablet {
+    background: url('../images/leav_foto_tablet.png') no-repeat right bottom -70px;
+    padding-bottom: 80px;
+  }
 
   &__container {
     flex-direction: column;
@@ -17,6 +21,9 @@
     margin-bottom: 50px;
     @include media-small-desktop {
       margin-bottom: 32px;
+    }
+    @include media-tablet {
+      @include font($size: 3.6rem, $height: 130%, $weight:400);
     }
   }
 
@@ -30,9 +37,16 @@
     @include media-small-desktop {
       margin-bottom: 55px;
     }
+    @include media-tablet {
+      flex-direction: column;
+      margin-bottom: 26px;
+    }
     &::-webkit-scrollbar {
       height: 6px;
       border-radius: 5px;
+      @include media-tablet {
+        height: 0;
+      }
     }
     &::-webkit-scrollbar-track {
       background-color: #F5F7F6;
@@ -53,6 +67,10 @@
     padding: 15px 82px;
     background-color: $color-primary;
     border-radius: 5px;
+    @include media-tablet {
+      align-self: center;
+      padding: 15px 55px;
+    }
   }
 }
 
@@ -78,6 +96,15 @@
     &:nth-of-type(3) {
       display: block;
     }
+    @include media-tablet {
+      max-width: 600px;
+      width: 100%;
+      height: 109px;
+      margin: 0 auto 14px auto;
+      &:nth-of-type(n+5) {
+        display: none;
+      }
+    }
   }
   &:last-child {
     margin-right: 0;
@@ -90,8 +117,13 @@
     max-height: 387px;
     border-radius: 20px;
     overflow: hidden;
+    margin: 2px 1px;
     @include media-small-desktop {
       max-width: 291px;
+    }
+    @include media-tablet {
+      max-width: 596px;
+      max-height: 105px;
     }
   }
 
@@ -99,6 +131,9 @@
     margin: 12px 0 11px 16px;
     display: flex;
     align-items: center;
+    @include media-tablet {
+      margin: 10px 0 10px 10px;
+    }
   }
 
   &__user-wrapper {
@@ -154,6 +189,10 @@
     @include media-small-desktop {
       max-width: 257px;
       max-height: 291px;
+    }
+    @include media-tablet {
+      max-width: 555px;
+      max-height: 38px;
     }
   }
 }

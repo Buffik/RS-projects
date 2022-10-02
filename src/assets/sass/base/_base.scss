@@ -12,10 +12,6 @@ body {
     margin: auto;
 }
 
-h1 {
-    display: none;
-}
-
 h2 {
     color: $color-font-main;
     @include font($size: 4.8rem, $height: 120%, $weight: 400);

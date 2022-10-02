@@ -4,6 +4,10 @@
   @include media-small-desktop {
     height: 1075px;
     background: url('../images/palm_foto_small.png') no-repeat left bottom, url('../images/strelitzia_small.png') no-repeat right bottom;
+  }
+  @include media-tablet {
+    height: 971px;
+    background: url('../images/palm_foto_tablet.png') no-repeat left bottom, url('../images/strelitzia_tablet.png') no-repeat right bottom;
 
   }
 }
@@ -13,6 +17,9 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 80px;
+  @include media-tablet {
+    margin-bottom: 60px;
+  }
 }
 
 .pets__container {
@@ -65,6 +72,13 @@
   @include media-small-desktop {
     width: 293px;
     height: 354px;
+  }
+  @include media-tablet {
+    &:nth-last-of-type(-n+2) {
+      display: none;
+    }
+    width: 285px;
+    height: 332px;
 
   }
 }
@@ -76,6 +90,10 @@
     width: 293px;
     height: 293px;
   }
+  @include media-tablet {
+    width: 285.24px;
+    height: 285.24px;
+  }
   background-size: 367px 367px;
   &-panda {
     transition: all 0.5s ease-in-out;
@@ -83,6 +101,9 @@
     @include media-small-desktop {
       background-size: 293px 293px;
       background-position: center top;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
     }
   }
   &-eagle {
@@ -92,6 +113,9 @@
       background-size: 293px 293px;
       background-position: top left;
     }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
   }
   &-gorilla {
     transition: all 0.5s ease-in-out;
@@ -99,6 +123,9 @@
     @include media-small-desktop {
       background-size: 293px 293px;
       background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
     }
   }
   &-sloth {
@@ -108,6 +135,9 @@
       background-size: 293px 293px;
       background-position: top left;
     }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
   }
   &-cheetah {
     transition: all 0.5s ease-in-out;
@@ -116,6 +146,9 @@
       background-size: 293px 293px;
       background-position: top left;
     }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
   }
   &-penguin {
     transition: all 0.5s ease-in-out;
@@ -123,6 +156,9 @@
     @include media-small-desktop {
       background-size: 293px 293px;
       background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
     }
   }
 }
@@ -143,6 +179,11 @@
     top: 300px;
     max-width: 264px;
   }
+  @include media-tablet {
+    max-width: 263.42px;
+    left: 11px;
+    top: 291px;
+  }
 }
 
 .pets__title {
@@ -152,10 +193,16 @@
   @include media-small-desktop {
     margin-bottom: 0;
   }
+  @include media-tablet {
+    @include font($size: 1.247rem, $height: 1.746rem, $weight:500);
+  }
 }
 
 .pets__subtitle {
   @include font($size: 1.5rem, $height: 120%, $weight:300);
+  @include media-tablet {
+    @include font($size: 1.16901rem, $height: 120%, $weight:300);
+  }
 }
 
 
@@ -163,6 +210,11 @@
   background: url('../icons/banana-bamboo.svg') no-repeat;
   height: 37px;
   width: 33px;
+  @include media-tablet {
+    height: 25.72px;
+    width: 28.84px;
+    background-size: 25.72px 28.84px;
+  }
 }
 
 
@@ -170,6 +222,11 @@
   background: url('../icons/meet-fish.svg') no-repeat;
   height: 38px;
   width: 48px;
+  @include media-tablet {
+    height: 25.72px;
+    width: 28.84px;
+    background-size: 25.72px 28.84px;
+  }
 }
 
 .pets__button {
@@ -200,10 +257,16 @@
     @include media-small-desktop {
       left: 352px;
     }
+    @include media-tablet {
+      left: 243px;
+    }
   }
   &-forward {
     @include media-small-desktop {
       right: 352px;
+    }
+    @include media-tablet {
+      right: 242px;
     }
   }
 }

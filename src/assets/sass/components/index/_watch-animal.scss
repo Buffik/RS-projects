@@ -13,7 +13,18 @@
   @media (max-width: 1000px) {
     background-size: 1198px 584px;
     background-position: top -80px left -100px;
-    height: 504px
+    height: 504px;
+    @media (max-width: 990px) {
+      background-size: 1198px 584px;
+      background-position: top -80px center;
+      height: 504px;
+      @media (max-width: 640px) {
+        background-size: 765.16px 373px;
+        background-position: top -34px center;
+        height: 339px;
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
@@ -39,6 +50,10 @@
     @include font($size: 8.5rem, $height: 75%, $weight: 700);
     margin: 43px 0 0 435px;
   }
+  @include media-tablet {
+    @include font($size: 5.42894rem, $height: 75%, $weight: 700);
+    margin: 48px 0 0 351px;
+  }
 }
 
 .title-background {
@@ -56,12 +71,20 @@
     width: 367px;
     height: 367px;
   }
+  @include media-tablet {
+    margin:  10px 0 0 311px;
+    width: 237.6px;
+    height: 237.6px;
+  }
 }
 
 .watch-animal__button {
   margin: 61px 0 0 765px;
   @include media-small-desktop {
     margin: 42px 0 0 536px;
+  }
+  @include media-tablet {
+    margin: -6px 0 0 2px;;
   }
 }
 

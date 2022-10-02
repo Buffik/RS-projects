@@ -1,3 +1,36 @@
+.logo {
+    @include media-tablet {
+        display: none;
+    }
+    &__tablet {
+        color: $color-font-header;
+        h1 {
+            display: none;
+            @include media-tablet {
+                margin: 0;
+                padding: 0;
+                display: block;
+                text-align: center;
+                position: relative;
+                @include font($size: 1.22899rem, $height: 120%, $weight:400);                color: $color-font-header;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 3px;
+                    top: 14px;
+                    width: 10px;
+                    height: 10px;
+                    background-image: url('../icons/tablet/PetStoryonline_small.svg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    transition: all .5s;
+                }
+            }
+        }
+    }
+}
+
 .icon-logo {
     font-size: 52px;
     color: $color-font-header;

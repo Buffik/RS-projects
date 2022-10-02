@@ -2,6 +2,7 @@
   background-color: $color-header;
   color: $color-font-header;
   padding-bottom: 44px;
+  position: relative;
 
   &__container {
     flex-direction: column;
@@ -11,6 +12,9 @@
     & > div {
       display: none;
     }
+    @include media-tablet {
+      display: block;
+    }
   }
 
   &__first-line {
@@ -19,6 +23,10 @@
     margin: 45px 0 38px 0;
     @include media-small-desktop {
       margin: 40px 0 38px 0;
+    }
+    @include media-tablet {
+      margin-top: 15px;
+      margin-bottom: 25px;
     }
   }
 
@@ -34,6 +42,9 @@
   &__form {
     @include media-small-desktop {
       margin-right: 35px;
+    }
+    @include media-tablet {
+      display: none;
     }
   }
 
@@ -88,6 +99,11 @@
     padding: 15px 10px;
     border-radius: 5px;
     margin-bottom: 40px;
+    @include media-tablet {
+      position: absolute;
+      top: 97px;
+      padding: 16px 49px;
+    }
   }
 
   &__second-line {
@@ -101,6 +117,9 @@
     flex-direction: column;
     max-width: 115px;
     width: 100%;
+    @include media-tablet {
+      display: none;
+    }
   }
 
   &__social {
@@ -121,6 +140,11 @@
       margin-left: 87px;
       max-width: 332px;
       margin-bottom: 7px;
+    }
+    @include media-tablet {
+      display: flex;
+      margin: 0;
+      max-width: 298px;
     }
   }
 
@@ -194,4 +218,19 @@
   &__youtube:hover::before {
     content: url('../icons/youtube_hovered.svg');
   }
+}
+
+.tablet__socials {
+  display: none;
+  @include media-tablet {
+    display: flex;
+    flex-direction: column;
+    font-size: 0;
+    max-width: 27px;
+    line-height: 0;
+  }
+}
+
+.tablet__social {
+  margin-bottom: 17px;
 }
