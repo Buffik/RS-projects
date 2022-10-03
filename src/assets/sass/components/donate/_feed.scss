@@ -26,6 +26,11 @@
       background-image: url('../images/donate/panda_bg_tablet.jpg');
       background-position-x: center;
     }
+    @include media-mobile {
+      height: 187px;
+      background-image: url('../images/donate/panda_bg_mobile.jpg');
+      background-position-x: center;
+    }
   }
 
   &__container {
@@ -54,12 +59,18 @@
     @include media-tablet {
       margin-bottom: 30px;
     }
+    @include media-mobile {
+    margin-bottom: 26px;
+    }
   }
 
   &__text {
     text-align: center;
     color: $color-font-main;
     @include font($size: 1.6rem, $height: 140%, $weight:400);
+    @include media-mobile {
+      white-space: nowrap;
+    }
   }
 }
 
@@ -72,6 +83,9 @@
   }
   @include media-tablet {
     margin-bottom: 28px;
+  }
+  @include media-mobile {
+    @include font($size: 2.4rem, $height: 120%, $weight:400);
   }
 }
 
@@ -90,6 +104,10 @@
       padding-bottom: 30px;
       margin-bottom: 46px;
     }
+    @include media-mobile {
+      padding-bottom: 20px;
+      margin-bottom: 21px;
+    }
   }
 
   &__title-h2 {
@@ -104,6 +122,10 @@
     @include media-tablet {
       margin: 29px 0 21px 0;
     }
+    @include media-mobile {
+      @include font($size: 2.4rem, $height: 120%, $weight:400);
+      margin: 21px 0 9px 0;
+    }
   }
 
   &__subtitle {
@@ -113,6 +135,10 @@
     @include media-tablet {
       text-align: center;
       margin-bottom: 100px;
+    }
+    @include media-mobile {
+      @include font($size: 1.6rem, $height: 140%, $weight:400);
+      margin-bottom: 44px;
     }
   }
 
@@ -128,6 +154,11 @@
       margin-left: 30px;
       margin-bottom: 39px;
     }
+    @include media-mobile {
+      margin: auto;
+      position: relative;
+      justify-content: space-between;
+    }
   }
 
   &__count {
@@ -135,26 +166,47 @@
     color: $color-font-main;
     @include font($size: 1.6rem, $height: 140%, $weight:400);
     margin-right: 10px;
+    @include media-mobile {
+      @include font($size: 0.902rem, $height: 140%, $weight:400);
+      margin-bottom: 15px;
+    }
   }
 
   &__days-count {
     color: #000000;
     @include font($size: 7.2rem, $height: 111%, $weight:500);
+    @include media-mobile {
+      @include font($size: 4rem, $height: 114%, $weight:500);
+    }
   }
 
   &__animal-ico {
     font-size: 195px;
     margin-top: 6px;
     color: #000000;
+    @include media-mobile {
+      font-size: 110px;
+      margin-top: 1px;
+      margin-right: 7px;
+    }
   }
 }
 
 .x-ico {
   background-image: url('../icons/x_icon.svg');
+  background-repeat: no-repeat;
   width: 14px;
   height: 14px;
   margin-top: -15px;
   margin-right: 64px;
+  @include media-mobile {
+    position: absolute;
+    background-size: 7.89px 7.89px;
+    width: 7.89px;
+    height: 7.89px;
+    top: 55px;
+    left: 96px;
+  }
 }
 
 .donation-calc {
@@ -165,6 +217,9 @@
     @include media-tablet {
       width: 600px;
     }
+    @include media-mobile {
+      width: 300px;
+    }
   }
 
   &__title {
@@ -174,10 +229,17 @@
       margin-bottom: -8px;
       line-height: 140%;
     }
+    @include media-mobile {
+      margin-left: 0;
+      margin-bottom: -13px;
+    }
   }
 
   &__form {
     margin-bottom: 88px;
+    @include media-mobile {
+      margin-bottom: 31px;
+    }
     &::before {
       content: "";
       z-index: 2;
@@ -195,6 +257,12 @@
         width: 510px;
         left: 45px;
         top: 39px;
+      }
+      @include media-mobile {
+        width: 257px;
+        height: 1px;
+        left: 22px;
+        top: 34.5px;
       }
     }
   }
@@ -244,6 +312,9 @@
     transform: translate(-50%, -50%);
     background: #404950;
     border-radius: 2px;
+    @include media-mobile {
+      height: 14px;
+    }
   }
   input, label {
     box-sizing: border-box;
@@ -256,6 +327,9 @@
     position: relative;
     height: 100%;
     user-select: none;
+    @include media-mobile {
+      width: 78px;
+    }
     &::before {
       content: attr(donation-amount);
       left: 27%;
@@ -266,6 +340,9 @@
       transform: translate(-50%, 45px);
       @include font($size: 2.6rem, $height: 140%, $weight:500);
       transition: all 0.15s ease-in-out;
+      @include media-mobile {
+        @include font($size: 1.3rem, $height: 140%, $weight:500);
+      }
     }
     &::after {
       content: "";
@@ -284,6 +361,10 @@
       @include media-small-desktop {
         left: 12%;
       }
+      @include media-mobile {
+        width: 5px;
+        height: 5px;
+      }
     }
     @include media-small-desktop {
       &:nth-of-type(3) {
@@ -296,12 +377,19 @@
           left: 19px;
           @include media-tablet {
             left: 40px;
+            @include media-mobile {
+              left: 20px;
+            }
           }
         }
         &::before {
           left: 21px;
           @include media-tablet {
             left: 44px;
+            @include media-mobile {
+              left: 22px;
+              top: -14px;
+            }
           }
         }
       }
@@ -310,12 +398,19 @@
           left: 20px;
           @include media-tablet {
             left: 40px;
+            @include media-mobile {
+              left: 25px;
+            }
           }
         }
         &::before {
           left: 28px;
           @include media-tablet {
             left: 44px;
+            @include media-mobile {
+              left: 27px;
+              top: -14px;
+            }
           }
         }
       }
@@ -324,12 +419,19 @@
           left: 22px;
           @include media-tablet {
             left: 40px;
+            @include media-mobile {
+              left: 30px;
+            }
           }
         }
         &::before {
           left: 31px;
           @include media-tablet {
             left: 42px;
+            @include media-mobile {
+              left: 33px;
+              top: -14px;
+            }
           }
         }
       }
@@ -338,12 +440,19 @@
           left: 23px;
           @include media-tablet {
             left: 40px;
+            @include media-mobile {
+              left: 35px;
+            }
           }
         }
         &::before {
           left: 23px;
           @include media-tablet {
             left: 35px;
+            @include media-mobile {
+              left: 33px;
+              top: -14px;
+            }
           }
         }
       }
@@ -369,6 +478,9 @@
           left: 65%;
           @include media-tablet {
             left: 37px;
+            @include media-mobile {
+              top: -14px;
+            }
           }
         }
       }
@@ -408,6 +520,14 @@
           }
         }
       }
+      @include media-mobile {
+        @for $i from 1 through $number-of-options-small-desktop {
+          &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
+            display: block;
+            left: #{65 * $i - 275 + 35 + 'px'};
+          }
+        }
+      }
     }
   }
   #debt-amount-pos {
@@ -421,6 +541,11 @@
     transition: all 0.15s ease-in-out;
     transform: translate(-50%, -50%);
     z-index: 2;
+    @include media-mobile {
+      background: url('../icons/roller_icon_mobile.svg') no-repeat;
+      width: 20px;
+      height: 20px;
+    }
   }
 	&:valid {
 		#debt-amount-slider {
@@ -464,7 +589,9 @@
       margin-bottom: 25px;
       @include media-tablet {
         margin-bottom: 31px;
-
+      }
+      @include media-mobile {
+        margin-bottom: 25px;
       }
     }
 
@@ -573,5 +700,8 @@
   }
   @include media-small-desktop {
     margin-bottom: 28px;
+  }
+  @include media-mobile {
+    margin-bottom: 25px;
   }
 }

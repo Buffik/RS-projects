@@ -25,6 +25,7 @@
   &__logo-mobile {
     display: none;
     @include media-mobile {
+      position: relative;
       display: block;
       @include font($size: 1.9rem, $height: 120%, $weight:400);
       margin-bottom: 24px;
