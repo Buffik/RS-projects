@@ -3,6 +3,9 @@
   color: $color-font-header;
   padding-bottom: 44px;
   position: relative;
+  @include media-mobile {
+    padding-bottom: 21px;
+  }
 
   &__container {
     flex-direction: column;
@@ -15,6 +18,31 @@
     @include media-tablet {
       display: block;
     }
+    @include media-mobile {
+      display: none;
+    }
+  }
+  &__logo-mobile {
+    display: none;
+    @include media-mobile {
+      display: block;
+      @include font($size: 1.9rem, $height: 120%, $weight:400);
+      margin-bottom: 24px;
+      &::before {
+      content: "";
+      position: absolute;
+      left: 72px;
+      top: -4px;
+      width: 14px;
+      height: 20px;
+      background-image: url('../icons/tablet/PetStoryonline_small.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: all .5s;
+  }
+    }
+    
   }
 
   &__first-line {
@@ -27,6 +55,11 @@
     @include media-tablet {
       margin-top: 15px;
       margin-bottom: 25px;
+    }
+    @include media-mobile {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 21px;
     }
   }
 
@@ -104,12 +137,19 @@
       top: 97px;
       padding: 16px 49px;
     }
+    @include media-mobile {
+      top: 129px;
+    }
   }
 
   &__second-line {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    @include media-mobile {
+      flex-direction: column-reverse;
+      margin-top: 70px;
+    }
   }
 
   &__socials-wrapper {
@@ -146,6 +186,10 @@
       margin: 0;
       max-width: 298px;
     }
+    @include media-mobile {
+      max-width: 278px;
+      margin: auto
+    }
   }
 
   &__author {
@@ -160,6 +204,10 @@
     @include media-small-desktop {
       line-height: 184%;
       margin-bottom: 3px;
+    }
+    @include media-mobile {
+      margin-bottom: 24px;
+      @include font($size: 1.5rem, $height: 200%, $weight: 100);
     }
   }
 
@@ -213,6 +261,9 @@
       width: 26px;
       height: 26px;
       top: 5px;
+      @include media-mobile {
+        margin-right: 0;
+      }
   }
 
   &__youtube:hover::before {
@@ -228,6 +279,11 @@
     font-size: 0;
     max-width: 27px;
     line-height: 0;
+  }
+  @include media-mobile {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 195px;
   }
 }
 

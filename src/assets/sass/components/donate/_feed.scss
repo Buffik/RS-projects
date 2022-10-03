@@ -12,6 +12,11 @@
     background-image: url('../images/donate/panda_bg.jpg');
     background-repeat: no-repeat;
     background-position-x: center;
+    &-wrapper {
+      @include media-tablet {
+        margin-top: 33px;
+      }
+    }
     @media (max-width: 1000px) {
       background-position-x: -170px;
       height: 390px;
@@ -156,6 +161,7 @@
 
   &__wrapper {
     margin-bottom: 30px;
+    position: relative;
     @include media-tablet {
       width: 600px;
     }
@@ -172,6 +178,25 @@
 
   &__form {
     margin-bottom: 88px;
+    &::before {
+      content: "";
+      z-index: 2;
+      background: #72828e;
+      height: 2px;
+      width: 900px;
+      position: absolute;
+      top: 51px;
+      left: 40px;
+      @include media-small-desktop {
+        width: 770px;
+        left: 20px;
+      }
+      @include media-tablet {
+        width: 510px;
+        left: 45px;
+        top: 39px;
+      }
+    }
   }
 
   &__form2 {
@@ -254,7 +279,7 @@
       background: #FFEE2E;
       border-radius: 50%;
       user-select: none;
-      z-index: 1;
+      z-index: 3;
       transition: all 0.15s ease-in-out;
       @include media-small-desktop {
         left: 12%;

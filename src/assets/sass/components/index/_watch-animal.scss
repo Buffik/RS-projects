@@ -4,6 +4,14 @@
   background-repeat: no-repeat;
   background-position: top -80px center;
   height: 700px;
+  &__wrapper {
+    @include media-tablet {
+      margin-top: 33px;
+    }
+    @include media-mobile {
+      margin-top: 33px;
+    }
+  }
   @include media-small-desktop {
     background-size: 1198px 584px;
     background-position: top -80px center;
@@ -23,6 +31,12 @@
         background-position: top -34px center;
         height: 339px;
         margin-bottom: 0;
+        @include media-mobile {
+          background-size: 384px 187px;
+          height: 187px;
+          background-position: top center;
+          margin-bottom: 47px;
+        }
       }
     }
   }
@@ -54,6 +68,10 @@
     @include font($size: 5.42894rem, $height: 75%, $weight: 700);
     margin: 48px 0 0 351px;
   }
+  @include media-mobile {
+    @include font($size: 2.8rem, $height: 75%, $weight: 700);
+    margin: 42px 0 69px 170px;
+  }
 }
 
 .title-background {
@@ -75,6 +93,11 @@
     margin:  10px 0 0 311px;
     width: 237.6px;
     height: 237.6px;
+  }
+  @include media-mobile {
+    margin:  24px 0 0 153px;
+    width: 119.09px;
+    height: 119.09px;
   }
 }
 

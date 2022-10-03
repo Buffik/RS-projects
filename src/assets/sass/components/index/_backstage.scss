@@ -15,6 +15,12 @@
     height: 476px;
     margin-bottom: 31px;
   }
+  @include media-mobile {
+    background-image: url('../images/flower_foto_mobile.png');
+    background-position: right top -7px;
+    height: 455px;
+    margin-bottom: 31px;
+  }
 }
 
 .backstage__wrapper {
@@ -75,9 +81,17 @@
     @include media-tablet {
       margin-bottom: 28px;
     }
+    @include media-mobile {
+      padding-left: 2px;
+      margin-bottom: 21px;
+    }
   }
   @include media-tablet {
     margin-top: 60px;
+  }
+  @include media-mobile {
+    @include font($size: 2.4rem, $height: 120%, $weight:400);
+    margin-bottom: 9px;
   }
 
 }
@@ -90,10 +104,15 @@
     margin-left: 3px;
     margin-bottom: 20px;
   }
+  @include media-mobile {
+    margin-bottom: 9px;
+  }
+
   &-info {
     @include media-tablet {
       line-height: 22.4px;
     }
+
   }
 }
 
