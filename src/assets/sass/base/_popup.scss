@@ -1,0 +1,115 @@
+.popup {
+  visibility: hidden;
+  z-index: 2;
+  position: fixed;
+  top: calc(50% - 195px);
+  left: calc(50% - 146px);
+  margin: auto;
+  display: flex;
+  width: 100%;
+  max-width: 293px;
+  justify-content: space-between;
+}
+
+.popup-button {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  &::after {
+    content: '';
+    background-image: url('../icons/close_icon.svg');
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 6px;
+    top: -8px;
+  }
+}
+
+.popup-comment {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 268px;
+  height: 391px;
+  border-radius: 20px;
+  background: $color-additional-gradient;
+  scroll-snap-align: start;
+  &__wrapper {
+    background-color: $color-comment-background;
+    width: 100%;
+    height: 100%;
+    max-width: 264px;
+    max-height: 387px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 2px 1px;
+  }
+
+  &__title-wrapper {
+    margin: 12px 0 11px 16px;
+    display: flex;
+    align-items: center;
+    @include media-tablet {
+      margin: 10px 0 10px 10px;
+    }
+  }
+
+  &__user-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__avatar {
+    width: 37px;
+    height: 37px;
+    background: url('../icons/user.svg');
+    margin-right: 10px;
+  }
+
+  &__title {
+    color: black;
+    @include font($size: 1.6rem, $height: 120%, $weight:400);
+  }
+
+  &__location-wrapper {
+    display: flex;
+  }
+
+  &__location {
+    color: $color-comment-location;
+    @include font($size: 1.5rem, $height: 120%, $weight:300);
+    margin-right: 6px;
+  }
+
+  &__dot {
+    margin-right: 6px;
+    &::before {
+      color: $color-comment-location;;
+      position: relative;
+      content: '.';
+      top: -25%;
+    }
+  }
+
+  &__date {
+    color: $color-comment-location;
+    @include font($size: 1.5rem, $height: 120%, $weight:300);
+  }
+
+  &__text {
+    max-width: 235px;
+    max-height: 309px;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    color: $color-font-additional;
+    @include font($size: 1.5rem, $height: 120%, $weight:300);
+    margin-left: 16px;
+  }
+}
+
+.popup__visible {
+  visibility: visible;
+}

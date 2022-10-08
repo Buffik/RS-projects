@@ -5,8 +5,6 @@ const menuBtnClose = document.querySelector('.header__hamburger-close-btn')
 const menuBtnOpen = document.querySelector('.header__hamburger')
 const menuLinks = document.querySelectorAll('.menu__link-mobile')
 
-console.log(menuBtnClose);
-
 const addBurgerMenu = () => {
   menuBtnOpen.addEventListener('click', () => {
     menuMobile.classList.add('menu-mobile__active')
