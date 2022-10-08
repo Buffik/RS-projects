@@ -48,6 +48,32 @@
     @include media-small-desktop {
         max-width: 431px;
     }
+    &-mobile {
+        padding-top: 10px;
+        padding-left: 10px;
+        position: absolute;
+        left: 0;
+        top: -400px;
+        z-index: 5;
+        width: 100vw;
+        height: 329px;
+        flex-direction: column;
+        background: #fff;
+        color: #000;
+        transition: all .5s;
+    }
+    @include media-tablet {
+    }
+}
+
+.menu-mobile__active {
+    @include media-tablet {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        top: 0;
+        z-index: 10;
+    }
 }
 
 .menu__list {
@@ -58,13 +84,19 @@
     }
 }
 
+.menu__item-mobile {
+    margin-bottom: 14px;
+}
+
 .menu__link {
     color: $color-font-header;
     @extend %transition;
     &:hover {
         color: $color-hovered;
     }
-
+    &-mobile {
+        color: #000;
+    }
 }
 
 .author {
@@ -76,4 +108,12 @@
     @include media-tablet {
         display: none;
     }
+    &-mobile {
+        color: #000;
+    }
+}
+
+.menu-mobile__wrapper {
+    width: 100%;
+    max-width: 640px;
 }

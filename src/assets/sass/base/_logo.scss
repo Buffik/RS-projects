@@ -40,3 +40,13 @@
         color: $color-hovered;
     }
 }
+
+.logo-mobile {
+    @include media-tablet {
+        display: block;
+        color: #FE9013;
+        text-align: start;
+        font-size: 41px;
+        margin-bottom: 31px;
+    }
+}

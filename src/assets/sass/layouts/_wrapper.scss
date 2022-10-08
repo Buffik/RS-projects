@@ -33,6 +33,9 @@
 .header__2-columns {
     @include columns(auto);
     align-items: center;
+    @include media-tablet {
+        position: relative;
+    }
     @include media-mobile {
         flex-wrap: nowrap;
     }

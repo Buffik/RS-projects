@@ -9,12 +9,25 @@
 <body>
   <header class="header">
     <div class="wrapper">
+      <nav class="header__menu-mobile">
+        <div class="menu-mobile__wrapper">
+          <a href="#" class="logo icon-logo logo-mobile"></a>
+          <ul class="menu__list-mobile">
+            <li class="menu__item-mobile"><a class="menu__link-mobile active" href="#">About</a></li>
+            <li class="menu__item-mobile"><a class="menu__link-mobile" href="#">Map</a></li>
+            <li class="menu__item-mobile"><a class="menu__link-mobile" href="#">Zoos</a></li>
+            <li class="menu__item-mobile"><a class="menu__link-mobile" href="./donate.html">Donate</a></li>
+            <li class="menu__item-mobile"><a class="menu__link-mobile" href="#footer">Contact us</a></li>
+          </ul>
+          <a href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online" class="author-mobile">Designed by &#169;</a>  
+        </div>
+        <div class="header__hamburger-close-btn"></div>
+      </nav>
       <div class="container header__2-columns">
         <div class="header__wrapper">
           <a href="#" class="logo icon-logo"></a>
           <a href="#" class="logo__tablet"><h1>PetStory<br> online</h1></a>
           <nav class="header__menu">
-            <div class="header__hamburger-close-btn"></div>
             <ul class="menu__list">
               <li class="menu__item"><a class="menu__link active" href="#">About</a></li>
               <li class="menu__item"><a class="menu__link" href="#">Map</a></li>
@@ -430,7 +443,7 @@ The best online zoo I’ve met. My son delighted very much ljves to watch gouill
       </div>
     </div>
   </section>
-  <footer class="footer main-footer">
+  <footer class="footer main-footer" id="footer">
     <div class="wrapper">
       <div class="container footer__container">
         <div class="footer__first-line">
@@ -468,5 +481,6 @@ The best online zoo I’ve met. My son delighted very much ljves to watch gouill
       </div>
     </div>
   </footer>
+  <div class="dark-background"></div>
 </body>
 </html>

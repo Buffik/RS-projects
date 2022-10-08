@@ -67,6 +67,7 @@
   @include media-tablet {
     @include font($size: 5.42894rem, $height: 75%, $weight: 700);
     margin: 48px 0 0 351px;
+    z-index: 1;
   }
   @include media-mobile {
     @include font($size: 2.8rem, $height: 75%, $weight: 700);
