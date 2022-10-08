@@ -67,28 +67,28 @@
             <div class="donation-calc__title">Amount</div>
             <form class="donation-calc__form" action="" id="donate-form">
               <div class="donation-amount-slider">
-                <input class="donation-amount-slider__input-radio" type="radio" name="donation-amount" id="1" value="$5000" required>
-                <label for="1" donation-amount="$5000"></label>
-                <input type="radio" name="donation-amount" id="2" value="$2000" required>
-                <label for="2" donation-amount="$2000"></label>
-                <input type="radio" name="donation-amount" id="3" value="$1000" required>
-                <label for="3" donation-amount="$1000"></label>
-                <input type="radio" name="donation-amount" id="4" value="$500" required>
-                <label for="4" donation-amount=" $500"></label>
-                <input type="radio" name="donation-amount" id="5" value="$250" required>
-                <label for="5" donation-amount="$250"></label>
-                <input type="radio" name="donation-amount" id="6" value="$100" required>
-                <label for="6" donation-amount=" $100"></label>
-                <input type="radio" name="donation-amount" id="7" value="$50" required>
-                <label for="7" donation-amount="  $50"></label>
-                <input type="radio" name="donation-amount" id="8" value="$25" required>
-                <label for="8" donation-amount="$25"></label>
-                <div id="debt-amount-pos"></div>
+                <input class="donation-amount-slider__input-radio" type="radio" name="donation-amount" id="value5000" value="5000" required>
+                <label for="value5000" donation-amount="$5000"></label>
+                <input type="radio" name="donation-amount" id="value2000" value="2000" required>
+                <label for="value2000" donation-amount="$2000"></label>
+                <input type="radio" name="donation-amount" id="value1000" value="1000" required>
+                <label for="value1000" donation-amount="$1000"></label>
+                <input type="radio" name="donation-amount" id="value500" value="500" required>
+                <label for="value500" donation-amount="$500"></label>
+                <input type="radio" name="donation-amount" id="value250" value="250" required>
+                <label for="value250" donation-amount="$250"></label>
+                <input type="radio" name="donation-amount" id="value100" value="100" required checked>
+                <label for="value100" donation-amount="$100"></label>
+                <input type="radio" name="donation-amount" id="value50" value="50" required>
+                <label for="value50" donation-amount="$50"></label>
+                <input type="radio" name="donation-amount" id="value25" value="25" required>
+                <label for="value25" donation-amount="$25"></label>
+                <div class="debt-amount-pos"></div>
               </div>
             </form>
             <div class="donation-calc__form2">
               <div class="donation-amount-slider__cache-wrapper">
-                <input form="donate-form" class="donation-amount-slider__cache" type="number" name="" id="" placeholder="Another amount" min="1" max="9999" required><span class="donation-amount-slider__cache-icon"></span>
+                <input onkeypress="if(this.value.length === 4) return false" form="donate-form" class="donation-amount-slider__cache" type="number" name="" id="donate-input" placeholder="Another amount" value="100" min="1" max="9999" required><span class="donation-amount-slider__cache-icon"></span>
               </div>
               <div class="feed-type-wrapper">
                 <input form="donate-form" type="radio" name="donation-type" id="9" value="monthly" required>

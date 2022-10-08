@@ -495,18 +495,18 @@
       + label::before {
         color: $color-primary;
       }
-      ~ #debt-amount-pos {
+      ~ .debt-amount-pos {
         opacity: 1;
       }
       @for $i from 1 through $number-of-options {
-        &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
+        &:nth-child(#{$i * 2 - 1}) ~ .debt-amount-pos {
           display: block;
           left: #{130 * $i - 130 + 35 + 'px'};
         }
       }
       @include media-small-desktop {
         @for $i from 1 through $number-of-options-small-desktop {
-          &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
+          &:nth-child(#{$i * 2 - 1}) ~ .debt-amount-pos {
             display: block;
             left: #{130 * $i - 280 + 35 + 'px'};
           }
@@ -514,7 +514,7 @@
       }
       @include media-tablet {
         @for $i from 1 through $number-of-options-small-desktop {
-          &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
+          &:nth-child(#{$i * 2 - 1}) ~ .debt-amount-pos {
             display: block;
             left: #{130 * $i - 515 + 35 + 'px'};
           }
@@ -522,7 +522,7 @@
       }
       @include media-mobile {
         @for $i from 1 through $number-of-options-small-desktop {
-          &:nth-child(#{$i * 2 - 1}) ~ #debt-amount-pos {
+          &:nth-child(#{$i * 2 - 1}) ~ .debt-amount-pos {
             display: block;
             left: #{65 * $i - 275 + 35 + 'px'};
           }
@@ -530,7 +530,7 @@
       }
     }
   }
-  #debt-amount-pos {
+  .debt-amount-pos {
     display: none;
     position: absolute;
     top: 50%;
@@ -704,4 +704,8 @@
   @include media-mobile {
     margin-bottom: 25px;
   }
+}
+
+.inactive_1 {
+  display: none !important;
 }
