@@ -29,15 +29,42 @@
   }
 }
 
+.pets-cards {
+  overflow: hidden;
+  padding: 0 13px;
+  &__container {
+    display: flex;
+    width: 1158px;
+    position: relative;
+    right: 1277px;
+    gap: 55px;
+    @include media-small-desktop {
+      width: 941px;
+      right: 1055px;
+    }
+    @include media-tablet {
+      width: 600px;
+      right: 717px;;
+    }
+  }
+}
+
+
+
 .pets__container {
+  display: flex;
+  flex: 0 0 1158px;
   flex-wrap: wrap;
-  width: auto;
   margin: 0 20px;
   row-gap: 15px;
   column-gap: 27px;
   @include media-small-desktop {
+    flex: 0 0 941px;
     row-gap: 93px;
     column-gap: 30px;
+  }
+  @include media-tablet {
+    flex: 0 0 600px;
   }
   @include media-mobile {
     row-gap: 20px;
@@ -85,12 +112,8 @@
     height: 354px;
   }
   @include media-tablet {
-    &:nth-last-of-type(-n+2) {
-      display: none;
-    }
     width: 285px;
     height: 332px;
-
   }
 }
 
@@ -164,6 +187,105 @@
   &-penguin {
     transition: all 0.5s ease-in-out;
     background: url('../images/pets/pets_penguin.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-fox {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_fox.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-horse_p {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_horse_prj.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-hyena {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_hyena.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-jerboa {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_jerboa.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-kenguru {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_kenguru.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-owl {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_owl.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-puma {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_puma.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-zubr {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_zubr.jpg') no-repeat center;
+    @include media-small-desktop {
+      background-size: 293px 293px;
+      background-position: top left;
+    }
+    @include media-tablet {
+      background-size: 285.24px 285.24px;
+    }
+  }
+  &-wolf {
+    transition: all 0.5s ease-in-out;
+    background: url('../images/pets/pets_wolf.jpg') no-repeat center;
     @include media-small-desktop {
       background-size: 293px 293px;
       background-position: top left;
@@ -246,6 +368,7 @@
 }
 
 .arrow {
+  z-index: 1;
   padding-top: 7px;
   color: $color-font-header;
   width: 62px;
@@ -284,3 +407,23 @@
     }
   }
 }
+
+
+@keyframes to-right {
+  from {right: 1277px}
+  to {right: 2529px}
+}
+
+@keyframes to-left {
+  from {right: 1277px}
+  to {right: 25px}
+}
+
+.right {
+  animation: 1s to-right;
+}
+
+.left {
+  animation: 1s to-left;
+}
+

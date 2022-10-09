@@ -1,15 +1,4 @@
-console.log('index')
-import '../../assets/sass/index.scss'
-import addBurgerMenu from '../../assets/js/burger'
-import renderComment from '../../assets/js/comments'
-import renderModal from '../../assets/js/popup'
-
-addBurgerMenu()
-renderComment()
-renderModal();
-
-
-import animals from '../../assets/js/animals'
+import {animals} from './animals'
 
 let slidesCount;
 let screenWidth = document.body.clientWidth;
@@ -91,14 +80,13 @@ sliderContainer.addEventListener("animationend", (animation) => {
   if (animation.animationName === "to-left") {
     carousel.classList.remove("left")
     activeSlide.innerHTML = leftSlide.innerHTML;
-    createHiddenSlides();
+    createLeftRightSlides();
   } else {
     carousel.classList.remove("right")
     activeSlide.innerHTML = rightSlide.innerHTML;
-    createHiddenSlides();
+    createLeftRightSlides();
   }
 
   buttonLeft.addEventListener("click", moveLeft);
   buttonRight.addEventListener("click", moveRight);
 })
-
