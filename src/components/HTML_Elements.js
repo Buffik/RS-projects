@@ -9,6 +9,7 @@ import findCoordinates from './DOM_API/positioning/findCoordinates';
 import isValidToRelocate from './DOM_API/positioning/isValidToRelocate';
 import relocate from './DOM_API/positioning/relocate';
 import isWon from './DOM_API/positioning/isWon';
+import isValidMatrix from './DOM_API/isValidMatrix';
 
 const fieldSizes = constants.fieldSizes;
 let startFieldSize = 3;
@@ -67,6 +68,9 @@ shuffleBtn.addEventListener('click', (event) => {
   itemsState = renderedItemNodes;
   itemsState[itemsState.length - 1].style.display = 'none';
   matrix = getMatrix(shuffleArray(buttonValues), selectedValue);
+  while (!isValidMatrix(matrix, selectedValue)) {
+    matrix = getMatrix(shuffleArray(buttonValues), selectedValue);
+  }
   setPosition(matrix, itemsState);
   stepsCount = 0;
 });
