@@ -1,5 +1,6 @@
 const renderField = (parent, itemsCount, values) => {
   parent.innerHTML = '';
+  let renderedItemNodes = [];
   for (let i = 0; i < values.length; i++) {
     const element = values[i];
     const btn = document.createElement('button');
@@ -8,7 +9,9 @@ const renderField = (parent, itemsCount, values) => {
     btn.dataset.itemPosition = element;
     btn.innerText = element;
     parent.append(btn);
+    renderedItemNodes.push(btn);
   }
+  return renderedItemNodes;
 };
 
 export default renderField;

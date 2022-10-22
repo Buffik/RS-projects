@@ -68,10 +68,32 @@ html {
 
 .btn {
   font: 3rem/1.2 sans-serif;
-  padding: 1rem;
+  padding: 2%;
   color: #ccd5ae;
   background-color: #d4a373;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.options__field {
+  width: 30%;
+  color: #d4a373;
+  background-color: #ccd5ae;
+  text-align: center;
+  font-size: 3rem;
+  margin-right: 2rem;
+  border: #faedcd solid;
+  border-radius: 5px;
+}
+
+.options__option {
+  width: 30%;
+  color: #d4a373;
+  background-color: #ccd5ae;
+  text-align: center;
+  font-size: 3rem;
+  margin-right: 2rem;
+  border: #faedcd solid;
+  border-radius: 5px;
 }
