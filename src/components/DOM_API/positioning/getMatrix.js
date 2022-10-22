@@ -5,12 +5,10 @@ const getMatrix = (arr, startFieldSize) => {
     matrix.push([]);
     index--;
   }
-
   let y = 0;
   let x = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    matrix[y][x] = arr[i];
     if (x >= startFieldSize) {
       y++;
       x = 0;
@@ -18,7 +16,6 @@ const getMatrix = (arr, startFieldSize) => {
     matrix[y][x] = arr[i];
     x++;
   }
-
   return matrix;
 };
 

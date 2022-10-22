@@ -5,14 +5,21 @@ import getMatrix from './DOM_API/positioning/getMatrix';
 import setStyles from './DOM_API/positioning/setStyles';
 import setPosition from './DOM_API/positioning/setPosition';
 import shuffleArray from './DOM_API/positioning/shuffleArray';
+import findCoordinates from './DOM_API/positioning/findCoordinates';
+import isValidToRelocate from './DOM_API/positioning/isValidToRelocate';
+import relocate from './DOM_API/positioning/relocate';
+import isWon from './DOM_API/positioning/isWon';
 
 const fieldSizes = constants.fieldSizes;
-let startFieldSize = 4;
+let startFieldSize = 3;
 let itemNodes = [];
 let wrapper = document.createElement('div');
 let field = document.createElement('div');
 let optionField = document.createElement('select');
 let shuffleBtn = document.createElement('button');
+let stepsCount = 0;
+let itemsState = [];
+let winState = [];
 
 let buttonValues = new Array(startFieldSize * startFieldSize)
   .fill(0)
@@ -48,17 +55,44 @@ shuffleBtn.innerText = 'shuffle and start';
 shuffleBtn.classList.add('btn', 'btn__shuffle');
 wrapper.append(shuffleBtn);
 
+setPosition(matrix, itemNodes);
+
 shuffleBtn.addEventListener('click', (event) => {
   let selectedValue = optionField.value;
   let buttonValues = new Array(selectedValue * selectedValue)
     .fill(0)
     .map((elem, index) => index + 1);
+  winState = buttonValues;
   let renderedItemNodes = renderField(field, selectedValue, buttonValues);
-  renderedItemNodes[renderedItemNodes.length - 1].style.display = 'none';
+  itemsState = renderedItemNodes;
+  itemsState[itemsState.length - 1].style.display = 'none';
   matrix = getMatrix(shuffleArray(buttonValues), selectedValue);
-  setPosition(matrix, renderedItemNodes);
+  setPosition(matrix, itemsState);
+  stepsCount = 0;
 });
 
-setPosition(matrix, itemNodes);
+field.addEventListener('click', (event) => {
+  const buttonNode = event.target.closest('.item');
+  if (!buttonNode) {
+    return;
+  }
+  let emptyItem = optionField.value ** 2;
+  const btnNumber = Number(buttonNode.dataset.itemPosition);
+  const btnCoordinates = findCoordinates(btnNumber, matrix);
+  const emptyItemCoordinates = findCoordinates(emptyItem, matrix);
+  const isValid = isValidToRelocate(btnCoordinates, emptyItemCoordinates);
+
+  console.log(isValid);
+
+  if (isValid) {
+    relocate(emptyItemCoordinates, btnCoordinates, matrix);
+    setPosition(matrix, itemsState);
+    stepsCount++;
+    if (isWon(matrix, winState)) {
+      console.log('winNNNNNERRRRRRRRRRRRRRREEEEEEEEE');
+    }
+    console.log(stepsCount);
+  }
+});
 
 export default [wrapper, field, startFieldSize, shuffleBtn];
