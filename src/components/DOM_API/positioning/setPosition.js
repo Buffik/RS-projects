@@ -8,7 +8,6 @@ const setPosition = (matrix, itemNodes) => {
       setStyles(node, x, y);
     }
   }
-  itemNodes[itemNodes.length - 1].style.display = 'none';
 };
 
 export default setPosition;

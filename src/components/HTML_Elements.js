@@ -4,6 +4,7 @@ import renderField from './DOM_API/renderField';
 import getMatrix from './DOM_API/positioning/getMatrix';
 import setStyles from './DOM_API/positioning/setStyles';
 import setPosition from './DOM_API/positioning/setPosition';
+import shuffleArray from './DOM_API/positioning/shuffleArray';
 
 const fieldSizes = constants.fieldSizes;
 let startFieldSize = 4;
@@ -53,12 +54,9 @@ shuffleBtn.addEventListener('click', (event) => {
     .fill(0)
     .map((elem, index) => index + 1);
   let renderedItemNodes = renderField(field, selectedValue, buttonValues);
-  matrix = getMatrix(
-    renderedItemNodes.map((elem) => Number(elem.dataset.itemPosition)),
-    selectedValue
-  );
+  renderedItemNodes[renderedItemNodes.length - 1].style.display = 'none';
+  matrix = getMatrix(shuffleArray(buttonValues), selectedValue);
   setPosition(matrix, renderedItemNodes);
-  console.log(matrix);
 });
 
 setPosition(matrix, itemNodes);

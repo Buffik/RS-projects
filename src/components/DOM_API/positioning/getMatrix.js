@@ -15,7 +15,6 @@ const getMatrix = (arr, startFieldSize) => {
       y++;
       x = 0;
     }
-
     matrix[y][x] = arr[i];
     x++;
   }
