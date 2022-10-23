@@ -27,6 +27,9 @@ html {
   position: relative;
   background-color: #e9edc9;
   margin-bottom: 2rem;
+  @media screen and (max-width: 540px) {
+    margin-bottom: 3rem;
+  }
 }
 
 .item {
@@ -161,6 +164,16 @@ html {
   color: #ccd5ae;
   background-color: #d4a373;
   font-size: 5rem;
+  @media screen and (max-width: 540px) {
+    font: 3.5rem/1.2 sans-serif;
+    height: 83%;
+  }
+  @media screen and (max-width: 420px) {
+    font: 3rem/1.2 sans-serif;
+  }
+  @media screen and (max-width: 400px) {
+    height: 78%;
+  }
 }
 
 .hidden {
