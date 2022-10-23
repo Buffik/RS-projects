@@ -98,3 +98,19 @@ html {
   border: #faedcd solid;
   border-radius: 5px;
 }
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.template__count,
+.template__timer {
+  font-size: 3rem;
+  padding: 0.5rem 1rem;
+  color: #ccd5ae;
+  background-color: #d4a373;
+  border-radius: 5px;
+}

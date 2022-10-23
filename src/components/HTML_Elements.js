@@ -12,15 +12,53 @@ import isWon from './DOM_API/positioning/isWon';
 import isValidMatrix from './DOM_API/isValidMatrix';
 
 const fieldSizes = constants.fieldSizes;
-let startFieldSize = 3;
+let startFieldSize = 4;
 let itemNodes = [];
 let wrapper = document.createElement('div');
 let field = document.createElement('div');
 let optionField = document.createElement('select');
 let shuffleBtn = document.createElement('button');
+let container = document.createElement('div');
+let countTemplate = document.createElement('div');
+let timerTemplate = document.createElement('div');
 let stepsCount = 0;
 let itemsState = [];
 let winState = [];
+
+//*****************Timer*****************/
+
+let secs,
+  now,
+  timer,
+  mins = 0;
+
+function time(node) {
+  secs = Math.floor((Date.now() - now) / 1000);
+  if (secs == 60) {
+    now = Date.now();
+    mins++;
+  }
+  if (secs < 10) {
+    secs = '0' + secs;
+  }
+
+  timerTemplate.innerHTML = `Time: ${mins < 10 ? '0' + mins : mins} : ${secs}`;
+}
+
+//*****************Timer*****************/
+
+//*****************Rendering start field***************/
+
+container.classList.add('container');
+
+countTemplate.classList.add('template__count');
+countTemplate.innerText = `Moves: ${stepsCount}`;
+
+timerTemplate.classList.add('template__timer');
+timerTemplate.innerText = `Time: 00:00`;
+
+container.append(countTemplate, timerTemplate);
+wrapper.append(container);
 
 let buttonValues = new Array(startFieldSize * startFieldSize)
   .fill(0)
@@ -47,6 +85,10 @@ let matrix = getMatrix(
   startFieldSize
 );
 
+itemNodes[itemNodes.length - 1].style.display = 'none';
+
+matrix = getMatrix(shuffleArray(buttonValues), startFieldSize);
+
 optionField.classList.add('options__field');
 wrapper.append(optionField);
 
@@ -57,6 +99,10 @@ shuffleBtn.classList.add('btn', 'btn__shuffle');
 wrapper.append(shuffleBtn);
 
 setPosition(matrix, itemNodes);
+
+//*****************Rendering start field***************/
+
+//*****************Game's logic***************/
 
 shuffleBtn.addEventListener('click', (event) => {
   let selectedValue = optionField.value;
@@ -73,6 +119,9 @@ shuffleBtn.addEventListener('click', (event) => {
   }
   setPosition(matrix, itemsState);
   stepsCount = 0;
+  now = Date.now();
+  mins = 0;
+  timer = setInterval(time);
 });
 
 field.addEventListener('click', (event) => {
@@ -93,10 +142,11 @@ field.addEventListener('click', (event) => {
     setPosition(matrix, itemsState);
     stepsCount++;
     if (isWon(matrix, winState)) {
-      console.log('winNNNNNERRRRRRRRRRRRRRREEEEEEEEE');
+      let endTime = timerTemplate.innerHTML;
+      console.log('winNNNNNERRRRRRRRRRRRRRREEEEEEEEE', endTime);
     }
-    console.log(stepsCount);
+    countTemplate.innerText = `Moves: ${stepsCount}`;
   }
 });
 
-export default [wrapper, field, startFieldSize, shuffleBtn];
+//*****************Game's logic***************/
