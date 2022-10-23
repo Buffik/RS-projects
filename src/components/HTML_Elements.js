@@ -10,6 +10,7 @@ import isValidToRelocate from './DOM_API/positioning/isValidToRelocate';
 import relocate from './DOM_API/positioning/relocate';
 import isWon from './DOM_API/positioning/isWon';
 import isValidMatrix from './DOM_API/isValidMatrix';
+import soundfile from '../assets/sound/sound.wav';
 
 const fieldSizes = constants.fieldSizes;
 let startFieldSize = 4;
@@ -21,6 +22,10 @@ let shuffleBtn = document.createElement('button');
 let container = document.createElement('div');
 let countTemplate = document.createElement('div');
 let timerTemplate = document.createElement('div');
+let popupTemplate = document.createElement('div');
+let audioTemplate = document.createElement('audio');
+let soundLabel = document.createElement('label');
+let soundCheckbox = document.createElement('input');
 let stepsCount = 0;
 let itemsState = [];
 let winState = [];
@@ -32,7 +37,7 @@ let secs,
   timer,
   mins = 0;
 
-function time(node) {
+function time() {
   secs = Math.floor((Date.now() - now) / 1000);
   if (secs == 60) {
     now = Date.now();
@@ -49,15 +54,27 @@ function time(node) {
 
 //*****************Rendering start field***************/
 
+audioTemplate.src = soundfile;
+document.body.append(audioTemplate);
+
+soundLabel.classList.add('template__sound');
+soundLabel.innerText = 'Sound?';
+soundCheckbox.type = 'checkbox';
+soundLabel.append(soundCheckbox);
+
 container.classList.add('container');
 
 countTemplate.classList.add('template__count');
 countTemplate.innerText = `Moves: ${stepsCount}`;
 
 timerTemplate.classList.add('template__timer');
-timerTemplate.innerText = `Time: 00:00`;
+timerTemplate.innerText = `Time: 00 : 00`;
 
-container.append(countTemplate, timerTemplate);
+popupTemplate.classList.add('popup');
+popupTemplate.classList.add('hidden');
+wrapper.append(popupTemplate);
+
+container.append(countTemplate, timerTemplate, soundLabel);
 wrapper.append(container);
 
 let buttonValues = new Array(startFieldSize * startFieldSize)
@@ -105,6 +122,8 @@ setPosition(matrix, itemNodes);
 //*****************Game's logic***************/
 
 shuffleBtn.addEventListener('click', (event) => {
+  popupTemplate.classList.remove('hidden');
+  popupTemplate.classList.add('hidden');
   let selectedValue = optionField.value;
   let buttonValues = new Array(selectedValue * selectedValue)
     .fill(0)
@@ -119,9 +138,10 @@ shuffleBtn.addEventListener('click', (event) => {
   }
   setPosition(matrix, itemsState);
   stepsCount = 0;
+  countTemplate.innerText = `Moves: ${stepsCount}`;
   now = Date.now();
   mins = 0;
-  timer = setInterval(time);
+  timer = setInterval(time, 500);
 });
 
 field.addEventListener('click', (event) => {
@@ -129,23 +149,36 @@ field.addEventListener('click', (event) => {
   if (!buttonNode) {
     return;
   }
+
   let emptyItem = optionField.value ** 2;
   const btnNumber = Number(buttonNode.dataset.itemPosition);
   const btnCoordinates = findCoordinates(btnNumber, matrix);
   const emptyItemCoordinates = findCoordinates(emptyItem, matrix);
   const isValid = isValidToRelocate(btnCoordinates, emptyItemCoordinates);
-
-  console.log(isValid);
+  if (!secs) {
+    popupTemplate.innerText = `Hey mate! This is the onload state of the game! Press shuffle to start and don't forget to choose field's Size. All combinations are winnable!`;
+    popupTemplate.classList.remove('hidden');
+  }
 
   if (isValid) {
+    if (secs && soundCheckbox.checked) {
+      audioTemplate.play();
+    }
     relocate(emptyItemCoordinates, btnCoordinates, matrix);
     setPosition(matrix, itemsState);
     stepsCount++;
-    if (isWon(matrix, winState)) {
-      let endTime = timerTemplate.innerHTML;
-      console.log('winNNNNNERRRRRRRRRRRRRRREEEEEEEEE', endTime);
-    }
     countTemplate.innerText = `Moves: ${stepsCount}`;
+  }
+  if (isWon(matrix, winState)) {
+    if (secs) {
+      popupTemplate.innerText = `Hooray! You solved the puzzle in ${
+        mins < 10 ? '0' + mins : mins
+      }:${secs} and ${stepsCount} moves!`;
+      popupTemplate.classList.remove('hidden');
+    }
+
+    clearInterval(timer);
+    timerTemplate.innerText = `Time: 00 : 00`;
   }
 });
 

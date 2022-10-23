@@ -15,6 +15,7 @@ html {
   margin: auto;
   padding: 3rem;
   text-align: center;
+  position: relative;
 }
 
 .field {
@@ -107,10 +108,42 @@ html {
 }
 
 .template__count,
-.template__timer {
+.template__timer,
+.template__sound {
   font-size: 3rem;
   padding: 0.5rem 1rem;
   color: #ccd5ae;
   background-color: #d4a373;
   border-radius: 5px;
+}
+
+.template__sound {
+  display: flex;
+  align-items: center;
+}
+
+.template__sound > input {
+  margin-left: 1rem;
+  display: block;
+  transform: scale(2);
+  cursor: pointer;
+}
+
+.popup {
+  z-index: 5;
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 82%;
+  border-radius: 1rem;
+  padding: 3rem;
+  color: #ccd5ae;
+  background-color: #d4a373;
+  font-size: 5rem;
+}
+
+.hidden {
+  display: none;
 }
