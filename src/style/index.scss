@@ -11,7 +11,7 @@ html {
 }
 
 .wrapper {
-  max-width: 600px;
+  max-width: 660px;
   margin: auto;
   padding: 3rem;
   text-align: center;
@@ -67,11 +67,15 @@ html {
 .item_7x7 {
   width: calc(100% / 7);
   height: calc(100% / 7);
+  border: #faedcd 1px solid;
+  font: 2rem/1.2 sans-serif;
 }
 
 .item_8x8 {
   width: calc(100% / 8);
   height: calc(100% / 8);
+  font: 2rem/1.2 sans-serif;
+  border: #faedcd 1px solid;
 }
 
 .btn {
@@ -112,6 +116,10 @@ html {
   margin-right: 2rem;
   border: #faedcd solid;
   border-radius: 5px;
+  @media screen and (max-width: 540px) {
+    font: 2rem/1.2 sans-serif;
+    padding: 0.5rem;
+  }
 }
 
 .container {

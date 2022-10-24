@@ -27,7 +27,7 @@ const isValidMatrix = (matrix, selectedValue) => {
   } else {
     let sumOfInversions = inversion;
     inversion = 0;
-    return (sumOfInversions + emptyItemCoordinates.y) % 2 ? false : true;
+    return (sumOfInversions + emptyItemCoordinates.y) % 2 ? true : false;
   }
 };
 
