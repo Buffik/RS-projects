@@ -1,4 +1,4 @@
-import lang from '../resources/lang';
+import { langHeader } from '../resources/lang';
 import setLang from './setLang';
 
 export const options = document.querySelector('.lang');

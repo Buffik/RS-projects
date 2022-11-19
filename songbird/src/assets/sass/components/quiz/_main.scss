@@ -1,0 +1,45 @@
+.bird-species {
+  &__wrapper {
+    width: 100%;
+    margin: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  &__item {
+    flex: auto;
+    text-align: center;
+  }
+
+  &__button {
+    padding: 10px;
+    background-color: $color-bck;
+    font-size: 1.5rem;
+    &-active {
+      background-color: $color-hovered;
+    }
+  }
+}
+
+.random-bird {
+  &__wrapper {
+    width: 100%;
+    background-color: $color-bck;
+    margin-bottom: 25px;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+
+  &__img {
+    width: 200px;
+    height: 155px;
+    background: url(../media/images/bird_random.jpg) no-repeat center center;
+    background-position: cover;
+    border-radius: 5px;
+  }
+}

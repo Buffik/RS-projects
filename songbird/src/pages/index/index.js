@@ -9,29 +9,29 @@ import {
   langEng,
   optionsField,
 } from '../../assets/js/components/header';
-import lang from '../../assets/js/resources/lang';
+import { langHeader, langBirdsSpecies } from '../../assets/js/resources/lang';
+import setLang from '../../assets/js/components/setLang';
 
 let currentHeaderLanguage = optionsField.value;
 
 homeButton.innerHTML =
   localStorage.getItem('lang') === 'ru'
-    ? `<a href="#">${lang['header-home']['ru']}</a>`
-    : `<a href="#">${lang['header-home']['eng']}</a>`;
+    ? `<a href="#">${langHeader['header-home']['ru']}</a>`
+    : `<a href="#">${langHeader['header-home']['eng']}</a>`;
 
 playButton.innerHTML =
   localStorage.getItem('lang') === 'ru'
-    ? `<a href="./quiz.html">${lang['header-game']['ru']}</a>`
-    : `<a href="./quiz.html">${lang['header-game']['eng']}</a>`;
+    ? `<a href="./quiz.html">${langHeader['header-game']['ru']}</a>`
+    : `<a href="./quiz.html">${langHeader['header-game']['eng']}</a>`;
 
 options.addEventListener('click', () => {
   let bufferLang = currentHeaderLanguage;
   currentHeaderLanguage = optionsField.value;
   setLang(currentHeaderLanguage);
   if (bufferLang !== currentHeaderLanguage) {
-    homeButton.innerHTML = `<a href="#">${lang['header-home'][currentHeaderLanguage]}</a>`;
-    playButton.innerHTML = `<a href="./quiz.html">${lang['header-game'][currentHeaderLanguage]}</a>`;
+    homeButton.innerHTML = `<a href="#">${langHeader['header-home'][currentHeaderLanguage]}</a>`;
+    playButton.innerHTML = `<a href="./quiz.html">${langHeader['header-game'][currentHeaderLanguage]}</a>`;
   }
-  console.log(localStorage.getItem('lang'));
 });
 
 const videoWrapper = document.createElement('div');
