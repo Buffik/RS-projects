@@ -1,8 +1,11 @@
 .audio-player {
   height: 50px;
-  width: 350px;
+  width: 70%;
   background: #444;
   box-shadow: 0 0 20px 0 #000a;
+  @include media-mobile {
+    width: 300px;
+  }
 
   font-family: arial;
   color: $color-font-main;

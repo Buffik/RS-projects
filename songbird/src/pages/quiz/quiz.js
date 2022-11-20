@@ -14,6 +14,7 @@ import birdsData from '../../assets/js/resources/birdsDataRu';
 import birdsDataEn from '../../assets/js/resources/birdsDataRu';
 import createSpecies from '../../assets/js/components/birdSpecies';
 import { player } from '../../assets/js/components/player';
+import birdNameToGuess from '../../assets/js/components/birdNameToGuess';
 
 let boo = birdsData[0][0].audio;
 
@@ -40,9 +41,16 @@ createSpecies(birdSpeciesTemplate, langBirdsSpecies, currentQuizLanguage);
 
 /**********************render Birds species**********************/
 
-/**********************render Audio**********************/
+/**********************render bird's name to guess**********************/
 
 const audioParent = document.querySelector('.media');
+
+birdNameToGuess(audioParent);
+
+/**********************render bird's name to guess**********************/
+
+/**********************render Audio**********************/
+
 player(audioParent, boo);
 
 /**********************render Audio**********************/
