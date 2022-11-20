@@ -1,6 +1,13 @@
-export const player = (parent, file) => {
+export const player = (parent, file, classSpecies) => {
+  if (
+    parent.firstChild.classList.value !== 'media__bird-name' &&
+    parent.firstChild.classList.value !== 'card__list-group-name'
+  ) {
+    parent.firstChild.remove();
+  }
   const audioPlayer = document.createElement('div');
   audioPlayer.classList.add('audio-player');
+  audioPlayer.classList.add(`audio-player-${classSpecies}`);
 
   //timeline
   const timeLineWrapper = document.createElement('div');
