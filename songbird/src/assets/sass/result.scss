@@ -10,8 +10,9 @@
 
 //layouts
 @import 'layouts/wrapper';
-@import 'layouts/header';
 @import 'layouts/footer';
 
 //components
+@import 'components/result/header';
 @import 'components/video';
+@import 'components/result/main';
