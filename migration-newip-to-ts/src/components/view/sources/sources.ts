@@ -1,4 +1,5 @@
-import { queryElement, SourcesItem } from '../../../types';
+import { SourcesItem } from '../../../types';
+import { queryElement } from '../../../types/checkQueryElements';
 import './sources.css';
 
 class Sources {

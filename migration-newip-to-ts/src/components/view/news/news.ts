@@ -1,4 +1,5 @@
-import { NewsItem, queryElement } from '../../../types';
+import { NewsItem } from '../../../types';
+import { queryElement } from '../../../types/checkQueryElements';
 import './news.css';
 
 class News {
