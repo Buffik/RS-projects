@@ -39,3 +39,12 @@ export interface AppViewTypes {
   news: NewsItem[];
   sources: SourcesItem[];
 }
+
+export interface options {
+  sources?: string;
+  apiKey?: string;
+}
+
+export interface urlOptions {
+  [index: string]: string;
+}
