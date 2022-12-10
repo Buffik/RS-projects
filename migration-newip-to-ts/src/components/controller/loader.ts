@@ -1,16 +1,19 @@
-import { options, urlOptions } from '../../types';
+import { OptionsForLoader, UrlOptions } from '../../types';
 
 class Loader {
   baseLink: string;
-  options: options;
+  options: OptionsForLoader;
 
-  constructor(baseLink: string, options: options) {
+  constructor(baseLink: string, options: OptionsForLoader) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp<T>(
-    { endpoint, options = {} }: { endpoint: string; options?: options },
+    {
+      endpoint,
+      options = {},
+    }: { endpoint: string; options?: OptionsForLoader },
     callback = (data: T) => {
       if (!data) {
         console.error('No callback for GET response');
@@ -28,8 +31,8 @@ class Loader {
     return res;
   }
 
-  makeUrl(options: options, endpoint: string) {
-    const urlOptions: urlOptions = {
+  makeUrl(options: OptionsForLoader, endpoint: string) {
+    const urlOptions: UrlOptions = {
       ...this.options,
       ...options,
     };

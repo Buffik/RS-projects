@@ -1,3 +1,5 @@
+//Types for news from server
+
 export interface NewsAPI {
   status: string;
   totalResults: number;
@@ -20,6 +22,10 @@ export interface NewsItemSource {
   name: string;
 }
 
+//--------------------------------
+
+//Types for headers from server
+
 export interface SourcesAPI {
   status: string;
   sources: SourcesItem[];
@@ -35,16 +41,15 @@ export interface SourcesItem {
   country: string;
 }
 
-export interface AppViewTypes {
-  news: NewsItem[];
-  sources: SourcesItem[];
-}
+//--------------------------------
 
-export interface options {
+//Types for controller
+
+export interface OptionsForLoader {
   sources?: string;
   apiKey?: string;
 }
 
-export interface urlOptions {
+export interface UrlOptions {
   [index: string]: string;
 }
