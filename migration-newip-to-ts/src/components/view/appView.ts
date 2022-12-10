@@ -1,17 +1,17 @@
-import { NewsAPI, SourcesAPI } from '../../types';
+import { INewsAPI, ISourcesAPI } from '../../types';
 import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
-  news: News = new News();
-  sources: Sources = new Sources();
+  readonly news: News = new News();
+  readonly sources: Sources = new Sources();
 
-  drawNews(data: NewsAPI) {
+  drawNews(data: INewsAPI) {
     const values = data?.articles ? data?.articles : [];
     this.news.draw(values);
   }
 
-  drawSources(data: SourcesAPI) {
+  drawSources(data: ISourcesAPI) {
     const values = data?.sources ? data?.sources : [];
     this.sources.draw(values);
   }

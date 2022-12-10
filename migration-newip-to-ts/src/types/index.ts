@@ -1,13 +1,13 @@
 //Types for news from server
 
-export interface NewsAPI {
+export interface INewsAPI {
   status: string;
   totalResults: number;
-  articles: NewsItem[];
+  articles: INewsItem[];
 }
 
-export interface NewsItem {
-  source: NewsItemSource;
+export interface INewsItem {
+  source: INewsItemSource;
   author: string;
   title: string;
   description: string;
@@ -17,7 +17,7 @@ export interface NewsItem {
   content: string;
 }
 
-export interface NewsItemSource {
+export interface INewsItemSource {
   id: string | null;
   name: string;
 }
@@ -26,12 +26,12 @@ export interface NewsItemSource {
 
 //Types for headers from server
 
-export interface SourcesAPI {
+export interface ISourcesAPI {
   status: string;
-  sources: SourcesItem[];
+  sources: ISourcesItem[];
 }
 
-export interface SourcesItem {
+export interface ISourcesItem {
   id: string;
   name: string;
   description: string;
@@ -45,11 +45,22 @@ export interface SourcesItem {
 
 //Types for controller
 
-export interface OptionsForLoader {
-  sources?: string;
-  apiKey?: string;
+export type TOptionsForLoader = {
+  sources: string;
+};
+
+export type TApiKey = {
+  apiKey: string;
+};
+
+export interface IUrlOptions {
+  [index: string]: string;
 }
 
-export interface UrlOptions {
-  [index: string]: string;
+//--------------------------------
+
+//type for handling response Error
+export enum ResponseStatus {
+  Unauthorized = 401,
+  NotFound = 404,
 }

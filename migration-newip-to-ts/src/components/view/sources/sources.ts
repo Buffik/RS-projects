@@ -1,30 +1,16 @@
-import { SourcesItem } from '../../../types';
+import { ISourcesItem } from '../../../types';
 import { queryElement } from '../../../types/checkQueryElements';
 import './sources.css';
 
 class Sources {
-  draw(data: SourcesItem[]) {
+  draw(data: ISourcesItem[]) {
     const fragment: DocumentFragment = document.createDocumentFragment();
-    const sourceItemTemp = queryElement(
-      document,
-      HTMLTemplateElement,
-      '#sourceItemTemp'
-    );
+    const sourceItemTemp = queryElement(document, HTMLTemplateElement, '#sourceItemTemp');
 
     data.forEach((item) => {
-      const sourceClone = sourceItemTemp.content.cloneNode(
-        true
-      ) as HTMLTemplateElement; //assert type to native Node-type
-      const sourceItemName = queryElement(
-        sourceClone,
-        HTMLSpanElement,
-        '.source__item-name'
-      );
-      const sourceItem = queryElement(
-        sourceClone,
-        HTMLDivElement,
-        '.source__item'
-      );
+      const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLTemplateElement; //assert type to native Node-type
+      const sourceItemName = queryElement(sourceClone, HTMLSpanElement, '.source__item-name');
+      const sourceItem = queryElement(sourceClone, HTMLDivElement, '.source__item');
       sourceItemName.textContent = item.name;
       sourceItem.setAttribute('data-source-id', item.id);
       fragment.append(sourceClone);

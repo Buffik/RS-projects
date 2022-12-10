@@ -1,19 +1,16 @@
-import { OptionsForLoader, UrlOptions } from '../../types';
+import { TOptionsForLoader, IUrlOptions, ResponseStatus, TApiKey } from '../../types';
 
 class Loader {
-  baseLink: string;
-  options: OptionsForLoader;
+  private baseLink: string;
+  private options: Partial<TOptionsForLoader> & Partial<TApiKey>;
 
-  constructor(baseLink: string, options: OptionsForLoader) {
+  constructor(baseLink: string, options: Partial<TOptionsForLoader> & Partial<TApiKey>) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   getResp<T>(
-    {
-      endpoint,
-      options = {},
-    }: { endpoint: string; options?: OptionsForLoader },
+    { endpoint, options = {} }: { endpoint: string; options?: Partial<TOptionsForLoader> },
     callback = (data: T) => {
       if (!data) {
         console.error('No callback for GET response');
@@ -25,14 +22,15 @@ class Loader {
 
   errorHandler(res: Response) {
     if (!res.ok) {
-      if (res.status === 401 || res.status === 404) throw Error(res.statusText);
+      if (res.status === ResponseStatus.Unauthorized || res.status === ResponseStatus.NotFound)
+        throw Error(res.statusText);
     }
 
     return res;
   }
 
-  makeUrl(options: OptionsForLoader, endpoint: string) {
-    const urlOptions: UrlOptions = {
+  makeUrl(options: Partial<TOptionsForLoader>, endpoint: string) {
+    const urlOptions: IUrlOptions = {
       ...this.options,
       ...options,
     };
@@ -45,12 +43,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load<U>(
-    method: string,
-    endpoint: string,
-    callback: (data: U) => void,
-    options = {}
-  ) {
+  load<U>(method: string, endpoint: string, callback: (data: U) => void, options = {}) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
