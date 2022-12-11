@@ -1,0 +1,59 @@
+.button-up {
+  position: sticky;
+  background-color: #17181c;
+  left: 300px;
+  bottom: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 50px;
+  z-index: 5;
+}
+
+@media (max-width: 1600px) {
+  .button-up {
+    left: 200px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .button-up {
+    left: 100px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .button-up {
+    left: 20px;
+  }
+}
+
+@media (max-width: 860px) {
+  .button-up {
+    background-color: #30c5ff;
+  }
+}
+
+.button-up::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  background: transparent no-repeat center center;
+  background-size: 60px 60px;
+  background-image: url('../../../sources/icons/arrow-square-up.svg');
+}
+
+.button-up__disabled {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-up:hover {
+    transition: 0.3s;
+    background-color: #30c5ff;
+  }
+}

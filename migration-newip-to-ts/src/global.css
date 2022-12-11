@@ -1,35 +1,89 @@
 body {
-    color: #fff;
-    background: #17181c;
-    font-family: sans-serif;
+  color: #fff;
+  background: #17181c;
+  font-family: sans-serif;
 }
 
 header {
-    padding: 10px 30px;
+  padding: 10px 30px;
 }
 
 header h1 {
-    font-size: 40px;
-    font-weight: 800;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 1440px;
+  margin: auto;
 }
 
 footer {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin: auto;
+  max-width: 600px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.footer__rs-school {
+  border: 2px solid #30c5ff;
+  width: 80px;
+  height: 40px;
+  background: transparent no-repeat center center;
+  background-size: 60px 60px;
+  background-image: url('./sources/icons/rs_school_js.svg');
+  transition: 0.3s;
+}
+
+.footer__rs-school:hover,
+.footer__rs-school:focus {
+  border-color: #3fcc59;
+  background-color: transparent;
+  color: #69db7e;
+  box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+  transform: translateY(-0.25em);
+}
+
+.footer__gh-logo {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  width: 85px;
+  height: 40px;
+  background-size: auto 100%;
+  background-image: url('./sources/icons/github_footer.svg');
+  background-repeat: no-repeat;
+  background-position: left, left;
+}
+
+.footer__gh {
+  display: block;
+  transition: 0.3s;
+  text-decoration: none;
+  color: #30c5ff;
+}
+
+.footer__gh:hover {
+  background-color: transparent;
+  color: #69db7e;
+  box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+  transform: translateY(-0.25em);
+}
+
 footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
 }
 footer .copyright a {
-    color: #444;
+  color: #444;
 }
 footer .copyright a:hover {
-    color: #555;
+  color: #555;
 }
 footer .copyright:before {
-    content: '©';
+  content: '©';
 }
