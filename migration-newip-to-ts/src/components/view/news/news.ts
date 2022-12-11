@@ -18,7 +18,7 @@ class News {
       }
 
       const newsMetaPhoto = queryElement(newsClone, HTMLDivElement, '.news__meta-photo');
-      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || './news_placeholder.jpg'})`;
 
       const newsMetaAuthor = queryElement(newsClone, HTMLLIElement, '.news__meta-author');
       newsMetaAuthor.textContent = item.author || item.source.name;
