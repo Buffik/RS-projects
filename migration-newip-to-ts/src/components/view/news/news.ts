@@ -1,6 +1,7 @@
 import { INewsItem } from '../../../types';
 import { queryElement } from '../../../types/checkQueryElements';
 import './news.css';
+import '../../../../src/assets/images/newsPlaceholder.jpg';
 
 class News {
   draw(data: INewsItem[]) {
@@ -18,7 +19,7 @@ class News {
       }
 
       const newsMetaPhoto = queryElement(newsClone, HTMLDivElement, '.news__meta-photo');
-      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || './news_placeholder.jpg'})`;
+      newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage ? item.urlToImage : './img/newsPlaceholder.jpg'})`;
 
       const newsMetaAuthor = queryElement(newsClone, HTMLLIElement, '.news__meta-author');
       newsMetaAuthor.textContent = item.author || item.source.name;
