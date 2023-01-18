@@ -1,0 +1,67 @@
+.wrapper {
+  background-color: teal;
+  width: 100vw;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.controlWrapper {
+  display: flex;
+  align-items: center;
+  & button {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid teal;
+    &:first-of-type {
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: white;
+      transition: 0.3s ease-in-out;
+    }
+  }
+}
+
+.carName {
+  color: white;
+}
+
+.controlButtonsWrapper {
+  margin: 10px 10px 10px 0;
+}
+
+.rangeWrapper {
+  display: flex;
+  min-width: 100%;
+  border-bottom: 7px dotted black;
+  margin-bottom: 10px;
+}
+
+.engineControlWrapper {
+  margin-right: 10px;
+  & button {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid teal;
+    &:first-of-type {
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: white;
+      transition: 0.3s ease-in-out;
+    }
+  }
+}
+
+.iconFinishFlag {
+  margin-left: auto;
+  margin-right: 120px;
+}
+
