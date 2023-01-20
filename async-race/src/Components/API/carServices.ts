@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TCar, TCarCreate } from '../../types/types';
 
-const URL = 'http://localhost:3001';
+const URL = 'http://localhost:3000';
 
 const garage = `${URL}/garage`;
 const engine = `${URL}/engine`;
 const winners = `${URL}/winners`;
 
-export default class PostService {
+export default class CarService {
   static async getCarById(id:number) {
     const result = await fetch(`${garage}/${id}`).then((response) => response.json());
     return result;
@@ -15,8 +15,8 @@ export default class PostService {
 
   static async getCars(currentPage: number, limit = 7) {
     const response = await fetch(`${garage}?_page=${currentPage}&_limit=${limit}`);
-    const cars = await response.json();
-    const allCarsCount = response.headers.get('X-Total-Count');
+    const cars: TCar[] = await response.json();
+    const allCarsCount: string | null = response.headers.get('X-Total-Count');
     return {
       cars,
       allCarsCount,

@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   & button {
+    background-color: rgb(166, 174, 180);
     padding: 5px 10px;
     cursor: pointer;
     font-size: 1.5rem;
@@ -21,7 +22,7 @@
     }
     &:hover {
       background-color: white;
-      transition: 0.3s ease-in-out;
+      transition: 0.5s all ease;
     }
   }
 }
@@ -44,6 +45,7 @@
 .engineControlWrapper {
   margin-right: 10px;
   & button {
+    background-color: rgb(166, 174, 180);
     padding: 5px 10px;
     cursor: pointer;
     font-size: 1.5rem;
@@ -55,7 +57,7 @@
     }
     &:hover {
       background-color: white;
-      transition: 0.3s ease-in-out;
+      transition: 0.5s all ease;
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../../Components/header';
-import Main from '../../Pages/Main';
+import Main from '../../Pages/Main/Main';
 import Other from '../../Pages/Other';
 
 // Компонент который осуществляет роутинг по страницам SPA,
