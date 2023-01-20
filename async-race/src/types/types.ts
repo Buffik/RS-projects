@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 export type TCar = {
   name: string,
@@ -21,8 +21,6 @@ export type THandleSingleCarDataSendToServer = (
   carColor: string,
   action: 'create' | 'update',
   getCars: () => Promise<void>,
-  shouldUpdateCars: number,
-  setShouldUpdateCars: React.Dispatch<React.SetStateAction<number>>,
   id?:number,
 ) => void
 

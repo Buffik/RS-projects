@@ -38,6 +38,7 @@ function CarTemplate({
             isBlocked={false}
             onClick={async () => {
               await CarService.deleteCar(carId);
+              setUpdatedCar({ name: '', color: '#ffffff', id: 0 });
               getCars();
             }}
           >

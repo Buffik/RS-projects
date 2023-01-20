@@ -1,68 +1,86 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import CarService from '../../Components/API/carServices';
 import CreateCarArea from '../../Components/CreateCar/CreateCarArea';
 import RaceArea from '../../Components/RaceArea/RaceArea';
-import useFetching from '../../hooks/useFetching';
 import CommonButton from '../../Components/UI/buttons/CommonButton';
 import { TCar, TCarsData } from '../../types/types';
 import styles from './main.module.scss';
 
-function Main() {
-  // array of cars from server, all cars count
-  const [cars, setCars] = useState<TCarsData | null>(null);
+interface IMain {
+  handleGenerateCarsButton: () => void
+  cars: TCarsData | null
+  getCars: () => Promise<void>
+  currentPage: number
+  createdCar: {name: string; color: string;}
+  setCreated: React.Dispatch<React.SetStateAction<{name: string; color: string;}>>
+  updatedCar: TCar
+  setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+}
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [areNavButtonsBlocked, setAreNavButtonsBlocked] = useState({ prev: true, next: true });
-  const [shouldUpdateCars, setShouldUpdateCars] = useState(1);
+function Main({
+  handleGenerateCarsButton,
+  cars, getCars,
+  currentPage,
+  setCurrentPage,
+  createdCar, setCreated,
+  updatedCar, setUpdatedCar,
+}: IMain) {
+  const [isPrevButtonBlocked, setIsPrevButtonBlocked] = useState(true);
+  const [isNextButtonBlocked, setIsNextButtonBlocked] = useState(true);
 
-  const [updatedCar, setUpdatedCar] = useState<TCar>({ name: '', color: '#ffffff', id: 0 });
-
-  console.log(updatedCar);
-  const [getCars, isLoadingCars, errorLoadingCars] = useFetching(async () => {
-    const carsData = await CarService.getCars(currentPage);
-    setCars(carsData);
-  });
+  const [currentWidthOfTrack, setCurrentWidthOfTrack] = useState(0);
 
   useEffect(() => {
     getCars();
-    if (cars && cars.cars.length) setShouldUpdateCars(cars.cars.length);
   }, [currentPage]);
 
   useEffect(() => {
-    if (currentPage === 1) {
-      setAreNavButtonsBlocked({ ...areNavButtonsBlocked, prev: true });
-    } else setAreNavButtonsBlocked({ ...areNavButtonsBlocked, prev: false });
     if (cars && cars.allCarsCount) {
+      if (currentPage > 1) {
+        setIsPrevButtonBlocked(false);
+      } else setIsPrevButtonBlocked(true);
       const maxPages = Math.ceil(Number(cars.allCarsCount) / 7);
       if (currentPage === maxPages) {
-        setAreNavButtonsBlocked({ ...areNavButtonsBlocked, next: true });
-      } else setAreNavButtonsBlocked({ ...areNavButtonsBlocked, next: false });
+        setIsNextButtonBlocked(true);
+      } else setIsNextButtonBlocked(false);
     }
-  }, [currentPage]);
+  }, [currentPage, cars]);
 
   useEffect(() => {
-    if (shouldUpdateCars <= 7) getCars();
-  }, [shouldUpdateCars]);
+    if (cars && cars.cars.length === 0 && currentPage > 1) setCurrentPage(currentPage - 1);
+  }, [cars]);
 
   return (
     <div>
       <CreateCarArea
         getCars={getCars}
-        shouldUpdateCars={shouldUpdateCars}
-        setShouldUpdateCars={setShouldUpdateCars}
+        createdCar={createdCar}
+        setCreated={setCreated}
         updatedCar={updatedCar}
         setUpdatedCar={setUpdatedCar}
+        handleGenerateCarsButton={handleGenerateCarsButton}
       />
       <RaceArea
         currentPage={currentPage}
         carsData={cars}
         setUpdatedCar={setUpdatedCar}
         getCars={getCars}
+        setCurrentWidthOfTrack={setCurrentWidthOfTrack}
       />
       <div className={styles.buttonsWrapper}>
-        <CommonButton isBlocked={areNavButtonsBlocked.prev} onClick={() => console.log('prev clicked')}>PREV</CommonButton>
-        <CommonButton isBlocked={areNavButtonsBlocked.next} onClick={() => console.log('next clicked')}>NEXT</CommonButton>
+        <CommonButton
+          isBlocked={isPrevButtonBlocked}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          PREV
+        </CommonButton>
+        <CommonButton
+          isBlocked={isNextButtonBlocked}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          NEXT
+        </CommonButton>
       </div>
     </div>
   );

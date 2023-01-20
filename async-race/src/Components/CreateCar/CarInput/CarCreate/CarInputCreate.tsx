@@ -1,68 +1,57 @@
 import React, {
-  Dispatch, SetStateAction, useEffect, useState,
+  useEffect, useState,
 } from 'react';
 import { THandleSingleCarDataSendToServer } from '../../../../types/types';
 import CommonButton from '../../../UI/buttons/CommonButton';
-import handleCarDataInInputs from '../../../utils/handleCarDataInInputs';
 import styles from '../carInput.module.scss';
 
 interface ICarInput {
   handleAction: THandleSingleCarDataSendToServer
-  carName: string
-  carColor: string
-  setName: Dispatch<SetStateAction<string>>
-  setColor: Dispatch<SetStateAction<string>>
+  createdCar: {name: string; color: string;}
+  setCreated: React.Dispatch<React.SetStateAction<{name: string; color: string;}>>
   buttonText: string
   action: 'create' | 'update'
   getCars: () => Promise<void>
-  shouldUpdateCars: number
-  setShouldUpdateCars: React.Dispatch<React.SetStateAction<number>>
 }
 
 function CarInputCreate({
   handleAction,
-  carName,
-  carColor,
-  setName,
-  setColor,
+  createdCar,
+  setCreated,
   buttonText,
   action,
   getCars,
-  shouldUpdateCars,
-  setShouldUpdateCars,
 }: ICarInput) {
   const [isEmpty, setIsEmpty] = useState(true);
 
   useEffect(() => {
-    if (!carName) setIsEmpty(true);
-    if (carName) setIsEmpty(false);
-  }, [carName]);
+    if (!createdCar.name) setIsEmpty(true);
+    if (createdCar.name) setIsEmpty(false);
+  }, [createdCar.name]);
 
   return (
     <div className={styles.wrapper}>
       <input
+        value={createdCar.name}
         type="text"
         placeholder="Enter the name"
         onChange={(e) => {
-          handleCarDataInInputs(e, setName);
+          setCreated({ ...createdCar, name: e.target.value });
         }}
       />
       <input
+        value={createdCar.color}
         type="color"
         onChange={(e) => {
-          handleCarDataInInputs(e, setColor);
+          setCreated({ ...createdCar, color: e.target.value });
         }}
       />
       <CommonButton
         isBlocked={isEmpty}
-        onClick={() => handleAction(
-          carName,
-          carColor,
-          action,
-          getCars,
-          shouldUpdateCars,
-          setShouldUpdateCars,
-        )}
+        onClick={() => {
+          handleAction(createdCar.name, createdCar.color, action, getCars);
+          setCreated({ name: '', color: '#ffffff' });
+        }}
       >
         {buttonText}
       </CommonButton>

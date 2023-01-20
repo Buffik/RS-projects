@@ -12,8 +12,6 @@ interface ICarInput {
   buttonText: string
   action: 'create' | 'update'
   getCars: () => Promise<void>
-  shouldUpdateCars: number
-  setShouldUpdateCars: React.Dispatch<React.SetStateAction<number>>
 }
 
 function CarInput({
@@ -23,8 +21,6 @@ function CarInput({
   buttonText,
   action,
   getCars,
-  shouldUpdateCars,
-  setShouldUpdateCars,
 }: ICarInput) {
   const [isEmptyCarUpdate, setIsEmptyCarUpdate] = useState(true);
 
@@ -57,8 +53,6 @@ function CarInput({
           updatedCar.color,
           action,
           getCars,
-          shouldUpdateCars,
-          setShouldUpdateCars,
           updatedCar.id,
         )}
       >

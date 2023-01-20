@@ -34,6 +34,12 @@ export default class CarService {
     return result;
   }
 
+  static async createMultipleCars(data:TCarCreate[]) {
+    const carsRequests = data.map((item) => CarService.createCar(item));
+    const result = await Promise.all(carsRequests);
+    return result;
+  }
+
   static async deleteCar(id:number) {
     const result = await fetch(`${garage}/${id}`, {
       method: 'DELETE',
