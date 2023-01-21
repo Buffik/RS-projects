@@ -13,6 +13,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [currentWidthOfTrack, setCurrentWidthOfTrack] = useState(0);
+  console.log(currentWidthOfTrack);
 
   const [createdCar, setCreated] = useState({ name: '', color: '#ffffff' });
   const [updatedCar, setUpdatedCar] = useState<TCar>({ name: '', color: '#ffffff', id: 0 });
@@ -46,6 +47,8 @@ function App() {
         updatedCar={updatedCar}
         setUpdatedCar={setUpdatedCar}
         handleGenerateCarsButton={handleGenerateCarsButton}
+        currentWidthOfTrack={currentWidthOfTrack}
+        setCurrentWidthOfTrack={setCurrentWidthOfTrack}
       />
     </HashRouter>
 

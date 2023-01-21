@@ -15,6 +15,8 @@ interface IRootRouter {
   updatedCar: TCar
   setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+  currentWidthOfTrack: number
+  setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
 }
 
 export default function RootRouter({
@@ -27,6 +29,8 @@ export default function RootRouter({
   updatedCar,
   setUpdatedCar,
   setCurrentPage,
+  currentWidthOfTrack,
+  setCurrentWidthOfTrack,
 }: IRootRouter) {
   return (
     <div>
@@ -45,6 +49,8 @@ export default function RootRouter({
               updatedCar={updatedCar}
               setUpdatedCar={setUpdatedCar}
               setCurrentPage={setCurrentPage}
+              currentWidthOfTrack={currentWidthOfTrack}
+              setCurrentWidthOfTrack={setCurrentWidthOfTrack}
             />
 )}
         />

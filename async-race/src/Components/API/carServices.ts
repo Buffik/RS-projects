@@ -67,4 +67,9 @@ export default class CarService {
     const result = await fetch(`${engine}?id=${id}&status=stopped`).then((response) => response.json());
     return result;
   }
+
+  static async driveCar(id:number) {
+    const response = await fetch(`${engine}?id=${id}&status=drive`).catch();
+    const result = await response.status === 200;
+  }
 }

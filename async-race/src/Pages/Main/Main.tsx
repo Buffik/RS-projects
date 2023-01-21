@@ -16,6 +16,8 @@ interface IMain {
   updatedCar: TCar
   setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+  currentWidthOfTrack: number
+  setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
 }
 
 function Main({
@@ -25,11 +27,10 @@ function Main({
   setCurrentPage,
   createdCar, setCreated,
   updatedCar, setUpdatedCar,
+  currentWidthOfTrack, setCurrentWidthOfTrack,
 }: IMain) {
   const [isPrevButtonBlocked, setIsPrevButtonBlocked] = useState(true);
   const [isNextButtonBlocked, setIsNextButtonBlocked] = useState(true);
-
-  const [currentWidthOfTrack, setCurrentWidthOfTrack] = useState(0);
 
   useEffect(() => {
     getCars();
@@ -66,6 +67,7 @@ function Main({
         carsData={cars}
         setUpdatedCar={setUpdatedCar}
         getCars={getCars}
+        currentWidthOfTrack={currentWidthOfTrack}
         setCurrentWidthOfTrack={setCurrentWidthOfTrack}
       />
       <div className={styles.buttonsWrapper}>

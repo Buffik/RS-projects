@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './carImage.module.scss';
 
 interface ICarImage {
   color: string
+  setCurRef: React.Dispatch<React.SetStateAction<CSSStyleDeclaration | undefined>>
 }
 
-function CarImage({ color }: ICarImage) {
+function CarImage({ color, setCurRef }: ICarImage) {
+  const carImg = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    setCurRef(carImg.current?.style);
+  }, []);
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={carImg}>
       <svg
         className={styles.img}
         version="1.0"
