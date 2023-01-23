@@ -6,13 +6,14 @@ import animation from '../Components/utils/animation';
 import generateRandomCars from '../Components/utils/generateRandomCars';
 import useFetching from '../hooks/useFetching';
 import {
-  IAnimationStore, TButtonStopEngineDisabled, TCar, TCarsData, TServerResponseStartEngine,
+  IAnimationStore, IFrames, TButtonStopEngineDisabled, TCar, TCarsData, TServerResponseStartEngine,
 } from '../types/types';
 import RootRouter from './RootRouter';
 
 function App() {
   // array of cars from server, all cars count
   let boo = false;
+  const frames = useRef<IFrames>({});
   const [cars, setCars] = useState<TCarsData | null>(null);
   const [winnerCar, setWinnerCar] = useState({ id: 0, name: '', time: '' });
   const [showWinnerCar, setShowWinnerCar] = useState(false);
@@ -21,21 +22,30 @@ function App() {
   const [
     areButtonsDisabled,
     setAreButtonsDisabled,
+  ] = useState({
+    prevButton: true,
+    nextButton: true,
+  });
+  const [
+    isButtonStopEngineDisabled,
+    setIsButtonStopEngineDisabled,
   ] = useState<TButtonStopEngineDisabled | []>([]);
   // eslint-disable-next-line max-len
   const [animationStore, setAnimationStore] = useState<IAnimationStore[] | []>([]);
   const [goRace] = useFetching(async () => {
-    // eslint-disable-next-line no-return-await
     const response = cars?.cars.map(async (item) => CarService.engineStart(item.id));
     const result = await Promise.all(response!);
     // eslint-disable-next-line max-len
     const animationData = result.map((item, index) => ({ id: cars?.cars[index].id, speed: Math.ceil(item.distance / item.velocity) }));
     animationData.forEach(async (item, index) => {
-      // eslint-disable-next-line max-len
-      const currentAnimation = animation(animationStore[index].carImage!, currentWidthOfTrack, item.speed);
+      if (item.id) {
+        const key = String(item.id);
+        // eslint-disable-next-line max-len
+        frames.current[key] = animation(animationStore[index].carImage!, currentWidthOfTrack, item.speed);
+      }
       const mistake = await CarService.driveCar(item.id!);
-      if (!mistake) {
-        cancelAnimationFrame(currentAnimation.id);
+      if (!mistake && item.id) {
+        cancelAnimationFrame(frames.current[item.id].id);
       } else if (!boo) {
         const winner = cars?.cars.find((car) => car.id === item.id) as TCar;
         boo = true;
@@ -43,15 +53,23 @@ function App() {
         setWinnerCar({ id: item.id!, name: winner.name, time: (item.speed / 1000).toFixed(2) });
       }
     });
+    // eslint-disable-next-line max-len
+    const buttons = isButtonStopEngineDisabled.map((el) => ({ ...el, disabled: !el.disabled }));
+    setIsButtonStopEngineDisabled(buttons);
+  });
+
+  const [stopRace] = useFetching(async () => {
+    boo = true;
+    cars?.cars.forEach(async (item, index) => {
+      await CarService.engineStop(item.id);
+      const key = String(item.id);
+      cancelAnimationFrame(frames.current[item.id].id);
+      animationStore[index].carImage!.transform = `translateX(${0}px)`;
+    });
   });
 
   const [createdCar, setCreated] = useState({ name: '', color: '#ffffff' });
   const [updatedCar, setUpdatedCar] = useState<TCar>({ name: '', color: '#ffffff', id: 0 });
-
-  const [
-    isButtonStopEngineDisabled,
-    setIsButtonStopEngineDisabled,
-  ] = useState<TButtonStopEngineDisabled | []>([]);
 
   const [getCars, isLoadingCars, errorLoadingCars] = useFetching(async () => {
     const carsData = await CarService.getCars(currentPage);
@@ -122,6 +140,7 @@ function App() {
         winnerCar={winnerCar}
         showWinnerCar={showWinnerCar}
         setShowWinnerCar={setShowWinnerCar}
+        stopRace={stopRace}
       />
     </HashRouter>
 

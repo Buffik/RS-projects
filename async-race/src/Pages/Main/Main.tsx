@@ -33,6 +33,7 @@ interface IMain {
     }
   showWinnerCar: boolean
   setShowWinnerCar: React.Dispatch<React.SetStateAction<boolean>>
+  stopRace: () => Promise<void>
 
 }
 
@@ -50,6 +51,7 @@ function Main({
   winnerCar,
   showWinnerCar,
   setShowWinnerCar,
+  stopRace,
 }: IMain) {
   const [isPrevButtonBlocked, setIsPrevButtonBlocked] = useState(true);
   const [isNextButtonBlocked, setIsNextButtonBlocked] = useState(true);
@@ -75,7 +77,7 @@ function Main({
   }, [cars]);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {showWinnerCar && (
       <Modal visible={showWinnerCar} setVisible={setShowWinnerCar}>
         <Winner winnerCar={winnerCar} />
@@ -89,6 +91,7 @@ function Main({
         setUpdatedCar={setUpdatedCar}
         handleGenerateCarsButton={handleGenerateCarsButton}
         goRace={goRace}
+        stopRace={stopRace}
       />
       <RaceArea
         currentPage={currentPage}

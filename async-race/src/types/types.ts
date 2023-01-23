@@ -38,3 +38,7 @@ export interface IAnimationStore {
   id: number
   carImage: CSSStyleDeclaration | undefined
 }
+
+export interface IFrames {
+  [key: string] : {id: number}
+}

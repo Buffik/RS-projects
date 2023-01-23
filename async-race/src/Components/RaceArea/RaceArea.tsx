@@ -29,15 +29,17 @@ function RaceArea({
 }: IRaceArea) {
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.title}>
-        Garage (
-        {carsData && carsData.allCarsCount}
-        )
-      </h2>
-      <div className={styles.pageNumberTitle}>
-        Page #
-        {' '}
-        {currentPage}
+      <div className={styles.infoWrapper}>
+        <h2 className={styles.title}>
+          Garage (
+          {carsData && carsData.allCarsCount}
+          )
+        </h2>
+        <div className={styles.pageNumberTitle}>
+          Page #
+          {' '}
+          {currentPage}
+        </div>
       </div>
       <div className={styles.carsWrapper}>
         {carsData && carsData.cars.map(

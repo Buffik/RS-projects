@@ -72,7 +72,6 @@ function CarTemplate({
     }
 
     refRequestId.current = requestAnimationFrame(function measure(time) {
-      console.log(refRequestId.current);
       if (!startAnimation) {
         startAnimation = time;
       }
@@ -183,7 +182,7 @@ function CarTemplate({
       <div className={styles.rangeWrapper} ref={ref}>
         <div className={styles.engineControlWrapper}>
           <CommonButton
-            isBlocked={isStartButtonDisabled}
+            isBlocked={!handleIsButtonBlocked(isButtonStopEngineDisabled, carId)}
             onClick={() => {
               engineStart();
               setIsStartButtonDisabled(true);

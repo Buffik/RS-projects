@@ -1,8 +1,11 @@
 .header {
-    height: 100px;
-    background-color: red;
+    height: 50px;
+    background-color: teal;
+    font-size: 2rem;
     &__navigation {
         display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100%;
         align-items: center;
         &__link {          

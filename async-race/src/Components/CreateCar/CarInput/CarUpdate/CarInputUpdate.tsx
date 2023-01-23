@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { TCar, THandleSingleCarDataSendToServer } from '../../../../types/types';
 import CommonButton from '../../../UI/buttons/CommonButton';
-import styles from '../carInput.module.scss';
+import styles from './carInputUpdate.module.scss';
 
 interface ICarInput {
   handleAction: THandleSingleCarDataSendToServer
@@ -32,6 +32,7 @@ function CarInput({
   return (
     <div className={styles.wrapper}>
       <input
+        className={styles.customInput}
         value={updatedCar.name}
         type="text"
         placeholder="Enter the name"
@@ -40,6 +41,7 @@ function CarInput({
         }}
       />
       <input
+        className={styles.customInput}
         type="color"
         value={updatedCar.color}
         onChange={(e) => {
