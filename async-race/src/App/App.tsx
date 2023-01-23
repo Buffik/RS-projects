@@ -4,9 +4,10 @@ import { HashRouter } from 'react-router-dom';
 import CarService from '../Components/API/carServices';
 import animation from '../Components/utils/animation';
 import generateRandomCars from '../Components/utils/generateRandomCars';
+import handleIsButtonBlocked from '../Components/utils/handleIsButtonBlocked';
 import useFetching from '../hooks/useFetching';
 import {
-  IAnimationStore, IFrames, TButtonStopEngineDisabled, TCar, TCarsData, TServerResponseStartEngine,
+  IAnimationStore, IFrames, TButtonStopEngineDisabled, TCar, TCarsData, TWinnersData,
 } from '../types/types';
 import RootRouter from './RootRouter';
 
@@ -15,9 +16,11 @@ function App() {
   let boo = false;
   const frames = useRef<IFrames>({});
   const [cars, setCars] = useState<TCarsData | null>(null);
+  const [winners, setWinners] = useState<TWinnersData | null>(null);
   const [winnerCar, setWinnerCar] = useState({ id: 0, name: '', time: '' });
   const [showWinnerCar, setShowWinnerCar] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentWinnersPage, setCurrentWinnersPage] = useState(1);
   const [currentWidthOfTrack, setCurrentWidthOfTrack] = useState(0);
   const [
     areButtonsDisabled,
@@ -62,10 +65,11 @@ function App() {
     boo = true;
     cars?.cars.forEach(async (item, index) => {
       await CarService.engineStop(item.id);
-      const key = String(item.id);
       cancelAnimationFrame(frames.current[item.id].id);
       animationStore[index].carImage!.transform = `translateX(${0}px)`;
     });
+    const buttons = isButtonStopEngineDisabled.map((el) => ({ ...el, disabled: !el.disabled }));
+    setIsButtonStopEngineDisabled(buttons);
   });
 
   const [createdCar, setCreated] = useState({ name: '', color: '#ffffff' });
@@ -74,6 +78,10 @@ function App() {
   const [getCars, isLoadingCars, errorLoadingCars] = useFetching(async () => {
     const carsData = await CarService.getCars(currentPage);
     setCars(carsData);
+  });
+  const [getWinners] = useFetching(async () => {
+    const winnersData = await CarService.getWinners(currentWinnersPage);
+    setWinners(winnersData);
   });
 
   const [createManyCars] = useState(generateRandomCars());
@@ -114,9 +122,38 @@ function App() {
 
   useEffect(() => {
     if (winnerCar.name) {
-      console.log(winnerCar);
+      CarService.saveWinner(Number(winnerCar.time), winnerCar.id);
     }
   }, [winnerCar]);
+
+  const handleStartEngineButton = async (id: number) => {
+    const currentCarImg = animationStore.find((car) => car.id === id);
+    const response = await CarService.engineStart(id);
+    const currentSpeed = Math.ceil(response.distance / response.velocity);
+    if (currentCarImg?.carImage) {
+      frames.current[id] = animation(currentCarImg.carImage, currentWidthOfTrack, currentSpeed);
+    }
+    // eslint-disable-next-line max-len
+    const buttons = isButtonStopEngineDisabled.map((el) => (el.id === id ? { ...el, disabled: !el.disabled } : el));
+    setIsButtonStopEngineDisabled(buttons);
+    handleIsButtonBlocked(isButtonStopEngineDisabled, id);
+
+    const mistake = await CarService.driveCar(id);
+    if (!mistake) {
+      cancelAnimationFrame(frames.current[id].id);
+    }
+  };
+
+  const handleStopEngineButton = async (id: number) => {
+    const currentCarImg = animationStore.find((car) => car.id === id);
+    await CarService.engineStop(id);
+    cancelAnimationFrame(frames.current[id].id);
+    if (currentCarImg?.carImage) currentCarImg.carImage.transform = `translateX(${0}px)`;
+    // eslint-disable-next-line max-len
+    const buttons = isButtonStopEngineDisabled.map((el) => (el.id === id ? { ...el, disabled: !el.disabled } : el));
+    setIsButtonStopEngineDisabled(buttons);
+    handleIsButtonBlocked(isButtonStopEngineDisabled, id);
+  };
 
   return (
     <HashRouter>
@@ -141,6 +178,8 @@ function App() {
         showWinnerCar={showWinnerCar}
         setShowWinnerCar={setShowWinnerCar}
         stopRace={stopRace}
+        handleStartEngineButton={handleStartEngineButton}
+        handleStopEngineButton={handleStopEngineButton}
       />
     </HashRouter>
 

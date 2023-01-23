@@ -6,6 +6,12 @@ export type TCar = {
   id: number
 };
 
+export type TWinner = {
+  wins: number,
+  time: number,
+  id: number
+};
+
 export type TCarCreate = {
   name: string,
   color: string,
@@ -13,6 +19,11 @@ export type TCarCreate = {
 
 export type TCarsData = {
   cars: TCar[]
+  allCarsCount: string | null
+}
+
+export type TWinnersData = {
+  winnerCars: TWinner[]
   allCarsCount: string | null
 }
 

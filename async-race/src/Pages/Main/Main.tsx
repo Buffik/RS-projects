@@ -34,6 +34,8 @@ interface IMain {
   showWinnerCar: boolean
   setShowWinnerCar: React.Dispatch<React.SetStateAction<boolean>>
   stopRace: () => Promise<void>
+  handleStartEngineButton: (id: number) => Promise<void>
+  handleStopEngineButton: (id: number) => Promise<void>
 
 }
 
@@ -52,6 +54,7 @@ function Main({
   showWinnerCar,
   setShowWinnerCar,
   stopRace,
+  handleStartEngineButton, handleStopEngineButton,
 }: IMain) {
   const [isPrevButtonBlocked, setIsPrevButtonBlocked] = useState(true);
   const [isNextButtonBlocked, setIsNextButtonBlocked] = useState(true);
@@ -104,6 +107,8 @@ function Main({
         setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
         animationStore={animationStore}
         setAnimationStore={setAnimationStore}
+        handleStartEngineButton={handleStartEngineButton}
+        handleStopEngineButton={handleStopEngineButton}
       />
       <div className={styles.buttonsWrapper}>
         <CommonButton

@@ -22,6 +22,7 @@ import CarService from '../../API/carServices';
 import handleEngineStop from '../../utils/handleEngineStop';
 import useFetching from '../../../hooks/useFetching';
 import updateButtonSingleState from '../../utils/updateButtonSingleState';
+import handleIsButtonBlocked from '../../utils/handleIsButtonBlocked';
 
 interface ICarTemplate {
   carId: number;
@@ -37,7 +38,8 @@ interface ICarTemplate {
   >;
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
-
+  handleStartEngineButton: (id: number) => Promise<void>
+  handleStopEngineButton: (id: number) => Promise<void>
 }
 
 function CarTemplate({
@@ -51,6 +53,7 @@ function CarTemplate({
   isButtonStopEngineDisabled,
   setIsButtonStopEngineDisabled,
   animationStore, setAnimationStore,
+  handleStartEngineButton, handleStopEngineButton,
 }: ICarTemplate) {
   const refRequestId = useRef(0);
 
@@ -60,33 +63,6 @@ function CarTemplate({
   const [isStartButtonDisabled, setIsStartButtonDisabled] = useState(false);
 
   // сделать вверху стейт, который хранит refRequestId
-  const animation = (
-    elem: CSSStyleDeclaration,
-    distance: number,
-    cartTime: number,
-  ) => {
-    const element = elem;
-    let startAnimation: number | null = null;
-    function easeInOut(time: number) {
-      return 0.5 * (1 - Math.cos(Math.PI * time));
-    }
-
-    refRequestId.current = requestAnimationFrame(function measure(time) {
-      if (!startAnimation) {
-        startAnimation = time;
-      }
-
-      const progress = (time - startAnimation) / cartTime;
-
-      const translate = easeInOut(progress) * distance;
-
-      element.transform = `translateX(${translate}px)`;
-
-      if (progress < 1) {
-        refRequestId.current = requestAnimationFrame(measure);
-      }
-    });
-  };
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -105,30 +81,11 @@ function CarTemplate({
     updateButtonSingleState(carId, isButtonStopEngineDisabled);
   });
 
-  const [checkDriveState] = useFetching(async () => {
-    const result = await CarService.driveCar(carId);
-    setCurrentCarDrive(result);
-  });
-
-  useEffect(() => {
-    if (currentSpeed > 0 && ref) {
-      animation(curRef!, currentWidthOfTrack, currentSpeed);
-      checkDriveState();
-    }
-  }, [currentSpeed]);
-
   useEffect(() => {
     if (!currentCarDrive) cancelAnimationFrame(refRequestId.current);
   }, [currentCarDrive]);
 
   useEffect(() => {
-    // const result = animationStore.map((item) => {
-    //   if (item.id === carId) {
-    //     // eslint-disable-next-line no-param-reassign
-    //     item.carImage = curRef;
-    //     return item;
-    //   } return item;
-    // });
     setAnimationStore(animationStore.map((item) => {
       if (item.id === carId) {
         // eslint-disable-next-line no-param-reassign
@@ -137,20 +94,6 @@ function CarTemplate({
       } return item;
     }));
   }, [curRef, carId, carName]);
-
-  const handleIsButtonBlocked = (
-    arr: TButtonStopEngineDisabled | [],
-    carId: number,
-  ) => {
-    if (arr.length > 0) {
-      const result = arr.find((elem) => elem.id === carId)?.disabled;
-      if (result === undefined) {
-        return true;
-      }
-      return result;
-    }
-    return true;
-  };
 
   return (
     <div className={styles.wrapper}>
@@ -183,25 +126,13 @@ function CarTemplate({
         <div className={styles.engineControlWrapper}>
           <CommonButton
             isBlocked={!handleIsButtonBlocked(isButtonStopEngineDisabled, carId)}
-            onClick={() => {
-              engineStart();
-              setIsStartButtonDisabled(true);
-            }}
+            onClick={() => { handleStartEngineButton(carId); }}
           >
             A
           </CommonButton>
           <CommonButton
             isBlocked={handleIsButtonBlocked(isButtonStopEngineDisabled, carId)}
-            onClick={() => {
-              handleEngineStop(
-                carId,
-                curRef!,
-                isButtonStopEngineDisabled,
-                setIsButtonStopEngineDisabled,
-                refRequestId,
-                setIsStartButtonDisabled,
-              );
-            }}
+            onClick={() => { handleStopEngineButton(carId); }}
           >
             B
           </CommonButton>

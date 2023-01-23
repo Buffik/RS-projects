@@ -31,6 +31,8 @@ interface IRootRouter {
   showWinnerCar: boolean
   setShowWinnerCar: React.Dispatch<React.SetStateAction<boolean>>
   stopRace: () => Promise<void>
+  handleStartEngineButton: (id: number) => Promise<void>
+  handleStopEngineButton: (id: number) => Promise<void>
 
 }
 
@@ -55,6 +57,7 @@ export default function RootRouter({
   showWinnerCar,
   setShowWinnerCar,
   stopRace,
+  handleStartEngineButton, handleStopEngineButton,
 }: IRootRouter) {
   return (
     <div>
@@ -84,6 +87,8 @@ export default function RootRouter({
               showWinnerCar={showWinnerCar}
               setShowWinnerCar={setShowWinnerCar}
               stopRace={stopRace}
+              handleStartEngineButton={handleStartEngineButton}
+              handleStopEngineButton={handleStopEngineButton}
             />
 )}
         />

@@ -16,7 +16,8 @@ interface IRaceArea {
   setIsButtonStopEngineDisabled:React.Dispatch<React.SetStateAction<TButtonStopEngineDisabled | []>>
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
-
+  handleStartEngineButton: (id: number) => Promise<void>
+  handleStopEngineButton: (id: number) => Promise<void>
 }
 
 function RaceArea({
@@ -26,6 +27,7 @@ function RaceArea({
   isButtonStopEngineDisabled,
   setIsButtonStopEngineDisabled,
   animationStore, setAnimationStore,
+  handleStartEngineButton, handleStopEngineButton,
 }: IRaceArea) {
   return (
     <div className={styles.wrapper}>
@@ -57,6 +59,8 @@ function RaceArea({
               setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
               animationStore={animationStore}
               setAnimationStore={setAnimationStore}
+              handleStartEngineButton={handleStartEngineButton}
+              handleStopEngineButton={handleStopEngineButton}
             />
           ),
         )}
