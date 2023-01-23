@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import styles from './raceArea.module.scss';
 import CarTemplate from '../Car/CarTemplate/CarTemplate';
-import { TCar, TCarsData } from '../../types/types';
+import {
+  IAnimationStore, TButtonStopEngineDisabled, TCar, TCarsData,
+} from '../../types/types';
 
 interface IRaceArea {
   currentPage: number
@@ -10,12 +12,20 @@ interface IRaceArea {
   getCars: () => Promise<void>
   currentWidthOfTrack: number
   setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
+  isButtonStopEngineDisabled: TButtonStopEngineDisabled | []
+  setIsButtonStopEngineDisabled:React.Dispatch<React.SetStateAction<TButtonStopEngineDisabled | []>>
+  animationStore: [] | IAnimationStore[]
+  setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
+
 }
 
 function RaceArea({
   currentPage, carsData, setUpdatedCar, getCars,
   currentWidthOfTrack,
   setCurrentWidthOfTrack,
+  isButtonStopEngineDisabled,
+  setIsButtonStopEngineDisabled,
+  animationStore, setAnimationStore,
 }: IRaceArea) {
   return (
     <div className={styles.wrapper}>
@@ -41,6 +51,10 @@ function RaceArea({
               getCars={getCars}
               currentWidthOfTrack={currentWidthOfTrack}
               setCurrentWidthOfTrack={setCurrentWidthOfTrack}
+              isButtonStopEngineDisabled={isButtonStopEngineDisabled}
+              setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
+              animationStore={animationStore}
+              setAnimationStore={setAnimationStore}
             />
           ),
         )}

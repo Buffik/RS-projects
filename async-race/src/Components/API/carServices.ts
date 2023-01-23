@@ -59,17 +59,18 @@ export default class CarService {
   }
 
   static async engineStart(id: number) {
-    const result = await fetch(`${engine}?id=${id}&status=started`).then((response) => response.json());
+    const result = await (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
     return result;
   }
 
   static async engineStop(id: number) {
-    const result = await fetch(`${engine}?id=${id}&status=stopped`).then((response) => response.json());
+    const result = await fetch(`${engine}?id=${id}&status=stopped`, { method: 'PATCH' }).then((response) => response.json());
     return result;
   }
 
   static async driveCar(id:number) {
-    const response = await fetch(`${engine}?id=${id}&status=drive`).catch();
-    const result = await response.status === 200;
+    const response = await fetch(`${engine}?id=${id}&status=drive`, { method: 'PATCH' }).catch();
+    const result = response.status === 200;
+    return result;
   }
 }

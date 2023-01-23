@@ -4,7 +4,12 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "airbnb"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -15,10 +20,14 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "import/extensions": [1, "ignorePackages", {
+    "import/extensions": [
+      1,
+      "ignorePackages",
+      {
         "ts": "never",
         "tsx": "never"
-      }],
+      }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       1,

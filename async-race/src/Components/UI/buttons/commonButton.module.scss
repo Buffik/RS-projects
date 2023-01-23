@@ -9,8 +9,11 @@
     &:first-of-type {
       margin-right: 5px;
     }
-    &:hover {
+    &:not([disabled]):hover {
       background-color: white;
       transition: 0.5s all ease;
+    }
+    &:disabled {
+      cursor: not-allowed;
     }
 }

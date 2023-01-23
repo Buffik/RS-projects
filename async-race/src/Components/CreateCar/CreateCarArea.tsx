@@ -13,6 +13,8 @@ interface ICreateCarArea {
   updatedCar: TCar
   setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
   handleGenerateCarsButton: () => void
+  goRace: () => Promise<void>
+
 }
 
 function CreateCarArea({
@@ -22,6 +24,7 @@ function CreateCarArea({
   updatedCar,
   setUpdatedCar,
   handleGenerateCarsButton,
+  goRace,
 } : ICreateCarArea) {
   return (
     <div className={styles.wrapper}>
@@ -44,7 +47,7 @@ function CreateCarArea({
         />
       </div>
       <div className={styles.buttonsWrapper}>
-        <CommonButton isBlocked={false} onClick={() => console.log('click select')}>Race</CommonButton>
+        <CommonButton isBlocked={false} onClick={() => goRace()}>Race</CommonButton>
         <CommonButton isBlocked={false} onClick={() => console.log('click select')}>Reset</CommonButton>
         <CommonButton
           isBlocked={false}

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../../Components/header';
 import Main from '../../Pages/Main/Main';
 import Other from '../../Pages/Other';
-import { TCar, TCarsData } from '../../types/types';
+import {
+  IAnimationStore, TButtonStopEngineDisabled, TCar, TCarsData,
+} from '../../types/types';
 
 interface IRootRouter {
   cars: TCarsData | null
@@ -17,6 +19,18 @@ interface IRootRouter {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
   currentWidthOfTrack: number
   setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
+  isButtonStopEngineDisabled: TButtonStopEngineDisabled | []
+  setIsButtonStopEngineDisabled:React.Dispatch<React.SetStateAction<TButtonStopEngineDisabled | []>>
+  animationStore: [] | IAnimationStore[]
+  setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
+  goRace: () => Promise<void>
+  winnerCar: {
+    name: string;
+    time: string;
+    }
+  showWinnerCar: boolean
+  setShowWinnerCar: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
 export default function RootRouter({
@@ -31,6 +45,14 @@ export default function RootRouter({
   setCurrentPage,
   currentWidthOfTrack,
   setCurrentWidthOfTrack,
+  isButtonStopEngineDisabled,
+  setIsButtonStopEngineDisabled,
+  animationStore,
+  setAnimationStore,
+  goRace,
+  winnerCar,
+  showWinnerCar,
+  setShowWinnerCar,
 }: IRootRouter) {
   return (
     <div>
@@ -51,6 +73,14 @@ export default function RootRouter({
               setCurrentPage={setCurrentPage}
               currentWidthOfTrack={currentWidthOfTrack}
               setCurrentWidthOfTrack={setCurrentWidthOfTrack}
+              isButtonStopEngineDisabled={isButtonStopEngineDisabled}
+              setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
+              animationStore={animationStore}
+              setAnimationStore={setAnimationStore}
+              goRace={goRace}
+              winnerCar={winnerCar}
+              showWinnerCar={showWinnerCar}
+              setShowWinnerCar={setShowWinnerCar}
             />
 )}
         />

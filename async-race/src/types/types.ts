@@ -26,3 +26,15 @@ export type THandleSingleCarDataSendToServer = (
 
 // eslint-disable-next-line no-shadow
 export enum whatTodoWithCar { create = 'create', update = 'update' }
+
+export type TButtonStopEngineDisabled = { id: number, disabled: boolean }[]
+
+export type TServerResponseStartEngine = {
+  velocity: number
+  distance: number
+};
+
+export interface IAnimationStore {
+  id: number
+  carImage: CSSStyleDeclaration | undefined
+}
