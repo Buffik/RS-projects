@@ -18,17 +18,11 @@ function App() {
   const [cars, setCars] = useState<TCarsData | null>(null);
   const [winners, setWinners] = useState<TWinnersData | null>(null);
   const [winnerCar, setWinnerCar] = useState({ id: 0, name: '', time: '' });
+  const [winnerCarDataModal, setWinnerCarDataModal] = useState({ id: 0, name: '', time: '' });
   const [showWinnerCar, setShowWinnerCar] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentWinnersPage, setCurrentWinnersPage] = useState(1);
   const [currentWidthOfTrack, setCurrentWidthOfTrack] = useState(0);
-  const [
-    areButtonsDisabled,
-    setAreButtonsDisabled,
-  ] = useState({
-    prevButton: true,
-    nextButton: true,
-  });
   const [
     isButtonStopEngineDisabled,
     setIsButtonStopEngineDisabled,
@@ -54,6 +48,8 @@ function App() {
         boo = true;
         setShowWinnerCar(true);
         setWinnerCar({ id: item.id!, name: winner.name, time: (item.speed / 1000).toFixed(2) });
+        // eslint-disable-next-line max-len
+        setWinnerCarDataModal({ id: item.id!, name: winner.name, time: (item.speed / 1000).toFixed(2) });
       }
     });
     // eslint-disable-next-line max-len
@@ -109,13 +105,10 @@ function App() {
       if (!animationStore.length) {
         const animationsArr = cars.cars.map((item) => ({ id: item.id, carImage: undefined }));
         setAnimationStore(animationsArr);
-        console.log('NEW CREATE :', animationStore);
       } else {
-        console.log(ids);
         // eslint-disable-next-line max-len
         const lastUpdatedCar: IAnimationStore[] = [...animationStore, { id: cars.cars[cars.cars.length - 1].id, carImage: undefined }].filter((elem) => ids.includes(elem.id));
         setAnimationStore(lastUpdatedCar);
-        console.log('update :', animationStore);
       }
     }
   }, [cars]);
@@ -123,8 +116,13 @@ function App() {
   useEffect(() => {
     if (winnerCar.name) {
       CarService.saveWinner(Number(winnerCar.time), winnerCar.id);
+      setWinnerCar({ id: 0, name: '', time: '' });
     }
   }, [winnerCar]);
+
+  useEffect(() => {
+    getWinners();
+  }, [currentWinnersPage]);
 
   const handleStartEngineButton = async (id: number) => {
     const currentCarImg = animationStore.find((car) => car.id === id);
@@ -174,12 +172,16 @@ function App() {
         animationStore={animationStore}
         setAnimationStore={setAnimationStore}
         goRace={goRace}
-        winnerCar={winnerCar}
+        winnerCarDataModal={winnerCarDataModal}
         showWinnerCar={showWinnerCar}
         setShowWinnerCar={setShowWinnerCar}
         stopRace={stopRace}
         handleStartEngineButton={handleStartEngineButton}
         handleStopEngineButton={handleStopEngineButton}
+        winners={winners}
+        setWinners={setWinners}
+        currentWinnersPage={currentWinnersPage}
+        setCurrentWinnersPage={setCurrentWinnersPage}
       />
     </HashRouter>
 

@@ -53,3 +53,11 @@ export interface IAnimationStore {
 export interface IFrames {
   [key: string] : {id: number}
 }
+
+export interface IWinnerData {
+  img: string;
+  carName: string;
+  wins: number;
+  time: number;
+  id: number
+}

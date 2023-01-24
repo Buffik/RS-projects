@@ -2,21 +2,21 @@ import React from 'react';
 import styles from './winner.module.scss';
 
 interface IPurchase {
-  winnerCar: {
+  winnerCarDataModal: {
     name: string;
     time: string;
   }
 }
 
-function Winner({ winnerCar }: IPurchase) {
+function Winner({ winnerCarDataModal }: IPurchase) {
   return (
     <div className={styles.wrapper}>
       Winner is
       {' '}
-      {winnerCar.name}
+      {winnerCarDataModal.name}
       , time elapsed
       {' '}
-      {winnerCar.time}
+      {winnerCarDataModal.time}
       s
     </div>
   );

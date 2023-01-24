@@ -76,7 +76,7 @@ export default class CarService {
 
   static async getWinners(currentPage: number, sort?: string, order?: string, limit = 10) {
     function getStringToSort(s?: string, o?: string) {
-      if (s && o) return `&_sort${s}&_order${o}`;
+      if (s && o) return `&_sort=${s}&_order=${o}`;
       return '';
     }
     const response = await fetch(`${winners}?_page=${currentPage}&_limit=${limit}&${getStringToSort(sort, order)}`);

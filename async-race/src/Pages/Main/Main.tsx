@@ -27,10 +27,10 @@ interface IMain {
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
   goRace: () => Promise<void>
-    winnerCar: {
-    name: string;
-    time: string;
-    }
+  winnerCarDataModal: {
+  name: string;
+  time: string;
+  }
   showWinnerCar: boolean
   setShowWinnerCar: React.Dispatch<React.SetStateAction<boolean>>
   stopRace: () => Promise<void>
@@ -50,7 +50,7 @@ function Main({
   isButtonStopEngineDisabled, setIsButtonStopEngineDisabled,
   animationStore, setAnimationStore,
   goRace,
-  winnerCar,
+  winnerCarDataModal,
   showWinnerCar,
   setShowWinnerCar,
   stopRace,
@@ -83,7 +83,7 @@ function Main({
     <div className={styles.wrapper}>
       {showWinnerCar && (
       <Modal visible={showWinnerCar} setVisible={setShowWinnerCar}>
-        <Winner winnerCar={winnerCar} />
+        <Winner winnerCarDataModal={winnerCarDataModal} />
       </Modal>
       )}
       <CreateCarArea

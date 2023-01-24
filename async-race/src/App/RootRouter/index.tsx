@@ -4,7 +4,7 @@ import Header from '../../Components/header';
 import Main from '../../Pages/Main/Main';
 import Other from '../../Pages/Other';
 import {
-  IAnimationStore, TButtonStopEngineDisabled, TCar, TCarsData,
+  IAnimationStore, TButtonStopEngineDisabled, TCar, TCarsData, TWinnersData,
 } from '../../types/types';
 
 interface IRootRouter {
@@ -24,7 +24,7 @@ interface IRootRouter {
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
   goRace: () => Promise<void>
-  winnerCar: {
+  winnerCarDataModal: {
     name: string;
     time: string;
     }
@@ -33,7 +33,10 @@ interface IRootRouter {
   stopRace: () => Promise<void>
   handleStartEngineButton: (id: number) => Promise<void>
   handleStopEngineButton: (id: number) => Promise<void>
-
+  winners: TWinnersData | null
+  setWinners: React.Dispatch<React.SetStateAction<TWinnersData | null>>
+  currentWinnersPage: number
+  setCurrentWinnersPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 export default function RootRouter({
@@ -53,11 +56,13 @@ export default function RootRouter({
   animationStore,
   setAnimationStore,
   goRace,
-  winnerCar,
+  winnerCarDataModal,
   showWinnerCar,
   setShowWinnerCar,
   stopRace,
   handleStartEngineButton, handleStopEngineButton,
+  winners, setWinners,
+  currentWinnersPage, setCurrentWinnersPage,
 }: IRootRouter) {
   return (
     <div>
@@ -83,7 +88,7 @@ export default function RootRouter({
               animationStore={animationStore}
               setAnimationStore={setAnimationStore}
               goRace={goRace}
-              winnerCar={winnerCar}
+              winnerCarDataModal={winnerCarDataModal}
               showWinnerCar={showWinnerCar}
               setShowWinnerCar={setShowWinnerCar}
               stopRace={stopRace}
@@ -92,7 +97,17 @@ export default function RootRouter({
             />
 )}
         />
-        <Route path="/winners" element={<Other />} />
+        <Route
+          path="/winners"
+          element={(
+            <Other
+              winners={winners}
+              setWinners={setWinners}
+              currentWinnersPage={currentWinnersPage}
+              setCurrentWinnersPage={setCurrentWinnersPage}
+            />
+)}
+        />
       </Routes>
     </div>
   );
