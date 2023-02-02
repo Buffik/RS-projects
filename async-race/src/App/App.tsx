@@ -27,18 +27,23 @@ function App() {
     isButtonStopEngineDisabled,
     setIsButtonStopEngineDisabled,
   ] = useState<TButtonStopEngineDisabled | []>([]);
-  // eslint-disable-next-line max-len
   const [animationStore, setAnimationStore] = useState<IAnimationStore[] | []>([]);
   const [goRace] = useFetching(async () => {
     const response = cars?.cars.map(async (item) => CarService.engineStart(item.id));
     const result = await Promise.all(response!);
-    // eslint-disable-next-line max-len
-    const animationData = result.map((item, index) => ({ id: cars?.cars[index].id, speed: Math.ceil(item.distance / item.velocity) }));
+    const animationData = result.map(
+      (item, index) => (
+        { id: cars?.cars[index].id, speed: Math.ceil(item.distance / item.velocity) }
+      ),
+    );
     animationData.forEach(async (item, index) => {
       if (item.id) {
         const key = String(item.id);
-        // eslint-disable-next-line max-len
-        frames.current[key] = animation(animationStore[index].carImage!, currentWidthOfTrack, item.speed);
+        frames.current[key] = animation(
+          animationStore[index].carImage!,
+          currentWidthOfTrack,
+          item.speed,
+        );
       }
       const mistake = await CarService.driveCar(item.id!);
       if (!mistake && item.id) {
@@ -48,11 +53,15 @@ function App() {
         boo = true;
         setShowWinnerCar(true);
         setWinnerCar({ id: item.id!, name: winner.name, time: (item.speed / 1000).toFixed(2) });
-        // eslint-disable-next-line max-len
-        setWinnerCarDataModal({ id: item.id!, name: winner.name, time: (item.speed / 1000).toFixed(2) });
+        setWinnerCarDataModal(
+          {
+            id: item.id!,
+            name: winner.name,
+            time: (item.speed / 1000).toFixed(2),
+          },
+        );
       }
     });
-    // eslint-disable-next-line max-len
     const buttons = isButtonStopEngineDisabled.map((el) => ({ ...el, disabled: !el.disabled }));
     setIsButtonStopEngineDisabled(buttons);
   });
@@ -101,13 +110,16 @@ function App() {
         return res;
       });
       setIsButtonStopEngineDisabled(result);
-      // eslint-disable-next-line max-len
       if (!animationStore.length) {
         const animationsArr = cars.cars.map((item) => ({ id: item.id, carImage: undefined }));
         setAnimationStore(animationsArr);
       } else {
-        // eslint-disable-next-line max-len
-        const lastUpdatedCar: IAnimationStore[] = [...animationStore, { id: cars.cars[cars.cars.length - 1].id, carImage: undefined }].filter((elem) => ids.includes(elem.id));
+        const lastUpdatedCar: IAnimationStore[] = [
+          ...animationStore,
+          {
+            id: cars.cars[cars.cars.length - 1].id,
+            carImage: undefined,
+          }].filter((elem) => ids.includes(elem.id));
         setAnimationStore(lastUpdatedCar);
       }
     }
@@ -131,8 +143,11 @@ function App() {
     if (currentCarImg?.carImage) {
       frames.current[id] = animation(currentCarImg.carImage, currentWidthOfTrack, currentSpeed);
     }
-    // eslint-disable-next-line max-len
-    const buttons = isButtonStopEngineDisabled.map((el) => (el.id === id ? { ...el, disabled: !el.disabled } : el));
+    const buttons = isButtonStopEngineDisabled.map(
+      (el) => (
+        el.id === id
+          ? { ...el, disabled: !el.disabled } : el),
+    );
     setIsButtonStopEngineDisabled(buttons);
     handleIsButtonBlocked(isButtonStopEngineDisabled, id);
 
@@ -147,8 +162,10 @@ function App() {
     await CarService.engineStop(id);
     cancelAnimationFrame(frames.current[id].id);
     if (currentCarImg?.carImage) currentCarImg.carImage.transform = `translateX(${0}px)`;
-    // eslint-disable-next-line max-len
-    const buttons = isButtonStopEngineDisabled.map((el) => (el.id === id ? { ...el, disabled: !el.disabled } : el));
+    const buttons = isButtonStopEngineDisabled.map(
+      (el) => (el.id === id
+        ? { ...el, disabled: !el.disabled } : el),
+    );
     setIsButtonStopEngineDisabled(buttons);
     handleIsButtonBlocked(isButtonStopEngineDisabled, id);
   };

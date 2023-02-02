@@ -26,8 +26,8 @@ function Winners({
   const [getWinnersData] = useFetching(async () => {
     if (winners) {
       const response = winners.winnerCars.map((car) => CarService.getCarById(car.id));
-      // eslint-disable-next-line max-len
-      const imagesArr = (await Promise.all(response)).map((car) => ({ img: car.color, name: car.name }));
+      const imagesArr = (await Promise.all(response))
+        .map((car) => ({ img: car.color, name: car.name }));
       const result = winners.winnerCars.map((data, index) => {
         const item = {
           img: imagesArr[index].img,
@@ -44,13 +44,19 @@ function Winners({
   const [filterByWins, setFilterByWins] = useState({ sort: 'wins', order: 'ASC' });
   const [filterByTime, setFilterByTime] = useState({ sort: 'time', order: 'ASC' });
   const [getWinnersByWins] = useFetching(async () => {
-    // eslint-disable-next-line max-len
-    const result = await CarService.getWinners(currentWinnersPage, filterByWins.sort, filterByWins.order);
+    const result = await CarService.getWinners(
+      currentWinnersPage,
+      filterByWins.sort,
+      filterByWins.order,
+    );
     setWinners(result);
   });
   const [getWinnersByTime] = useFetching(async () => {
-  // eslint-disable-next-line max-len
-    const result = await CarService.getWinners(currentWinnersPage, filterByTime.sort, filterByTime.order);
+    const result = await CarService.getWinners(
+      currentWinnersPage,
+      filterByTime.sort,
+      filterByTime.order,
+    );
     setWinners(result);
   });
 
@@ -107,10 +113,18 @@ function Winners({
         <tbody>
           {
           winnersData.map((data, index) => {
-            // eslint-disable-next-line max-len
-            const currenOrder = currentWinnersPage === 1 ? index + 1 : index + 1 + 10 * (currentWinnersPage - 1);
-            // eslint-disable-next-line max-len
-            return <WinCar key={data.id} order={currenOrder} img={data.img} name={data.carName} wins={data.wins} time={data.time} />;
+            const currenOrder = currentWinnersPage
+            === 1 ? index + 1 : index + 1 + 10 * (currentWinnersPage - 1);
+            return (
+              <WinCar
+                key={data.id}
+                order={currenOrder}
+                img={data.img}
+                name={data.carName}
+                wins={data.wins}
+                time={data.time}
+              />
+            );
           })
           }
         </tbody>
