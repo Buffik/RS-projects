@@ -10,7 +10,7 @@ function CarImage({ color, setCurRef }: ICarImage) {
   const carImg = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setCurRef(carImg.current?.style);
+    if (carImg.current) setCurRef(carImg.current.style);
   }, []);
   return (
     <div className={styles.wrapper} ref={carImg}>

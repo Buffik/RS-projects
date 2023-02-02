@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TCar, TCarCreate, TWinner } from '../../types/types';
+import {
+  TCar,
+  TCarCreate,
+  TServerResponseStartEngine,
+  TWinner,
+} from '../../types/types';
 
 const URL = 'http://localhost:3000';
 
@@ -9,7 +14,7 @@ const winners = `${URL}/winners`;
 
 export default class CarService {
   static async getCarById(id:number) {
-    const result = await fetch(`${garage}/${id}`).then((response) => response.json());
+    const result: TCar = await fetch(`${garage}/${id}`).then((response) => response.json());
     return result;
   }
 
@@ -24,48 +29,44 @@ export default class CarService {
   }
 
   static async createCar(data: TCarCreate) {
-    const result = await fetch(garage, {
+    await fetch(garage, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json',
       },
-    }).then((response) => response.json());
-    return result;
+    });
   }
 
   static async createMultipleCars(data:TCarCreate[]) {
-    const carsRequests = data.map((item) => CarService.createCar(item));
-    const result = await Promise.all(carsRequests);
+    const carsRequests:Promise<void>[] = data.map((item) => CarService.createCar(item));
+    const result: void[] = await Promise.all(carsRequests);
     return result;
   }
 
   static async deleteCar(id:number) {
-    const result = await fetch(`${garage}/${id}`, {
+    await fetch(`${garage}/${id}`, {
       method: 'DELETE',
-    }).then((response) => response.json());
-    return result;
+    });
   }
 
   static async updateCar(id: number, data: TCarCreate) {
-    const result = await fetch(`${garage}/${id}`, {
+    await fetch(`${garage}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json',
       },
-    }).then((response) => response.json());
-    return result;
+    });
   }
 
   static async engineStart(id: number) {
-    const result = await (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
+    const result: TServerResponseStartEngine = await (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
     return result;
   }
 
   static async engineStop(id: number) {
-    const result = await fetch(`${engine}?id=${id}&status=stopped`, { method: 'PATCH' }).then((response) => response.json());
-    return result;
+    await fetch(`${engine}?id=${id}&status=stopped`, { method: 'PATCH' }).then((response) => response.json());
   }
 
   static async driveCar(id:number) {
@@ -89,7 +90,7 @@ export default class CarService {
   }
 
   static async getWinnerById(id:number) {
-    const result = await fetch(`${winners}/${id}`).then((response) => response.json());
+    const result: TWinner = await fetch(`${winners}/${id}`).then((response) => response.json());
     return result;
   }
 
@@ -99,30 +100,27 @@ export default class CarService {
   }
 
   static async deleteWinner(id:number) {
-    const result = await (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();
-    return result;
+    await (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();
   }
 
   static async createWinner(data: TWinner) {
-    const result = await fetch(winners, {
+    await fetch(winners, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json',
       },
-    }).then((response) => response.json());
-    return result;
+    });
   }
 
   static async updateWinner(id: number, data: TWinner) {
-    const result = await fetch(`${winners}/${id}`, {
+    await fetch(`${winners}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
         'Content-type': 'application/json',
       },
-    }).then((response) => response.json());
-    return result;
+    });
   }
 
   static async saveWinner(time :number, id :number) {

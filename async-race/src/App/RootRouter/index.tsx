@@ -17,10 +17,8 @@ interface IRootRouter {
   updatedCar: TCar
   setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-  currentWidthOfTrack: number
   setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
   isButtonStopEngineDisabled: TButtonStopEngineDisabled | []
-  setIsButtonStopEngineDisabled:React.Dispatch<React.SetStateAction<TButtonStopEngineDisabled | []>>
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
   goRace: () => Promise<void>
@@ -49,10 +47,8 @@ export default function RootRouter({
   updatedCar,
   setUpdatedCar,
   setCurrentPage,
-  currentWidthOfTrack,
   setCurrentWidthOfTrack,
   isButtonStopEngineDisabled,
-  setIsButtonStopEngineDisabled,
   animationStore,
   setAnimationStore,
   goRace,
@@ -81,10 +77,8 @@ export default function RootRouter({
               updatedCar={updatedCar}
               setUpdatedCar={setUpdatedCar}
               setCurrentPage={setCurrentPage}
-              currentWidthOfTrack={currentWidthOfTrack}
               setCurrentWidthOfTrack={setCurrentWidthOfTrack}
               isButtonStopEngineDisabled={isButtonStopEngineDisabled}
-              setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
               animationStore={animationStore}
               setAnimationStore={setAnimationStore}
               goRace={goRace}

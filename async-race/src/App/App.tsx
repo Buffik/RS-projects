@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import CarService from '../Components/API/carServices';
@@ -12,7 +11,6 @@ import {
 import RootRouter from './RootRouter';
 
 function App() {
-  // array of cars from server, all cars count
   let boo = false;
   const frames = useRef<IFrames>({});
   const [cars, setCars] = useState<TCarsData | null>(null);
@@ -27,52 +25,63 @@ function App() {
     isButtonStopEngineDisabled,
     setIsButtonStopEngineDisabled,
   ] = useState<TButtonStopEngineDisabled | []>([]);
-  const [animationStore, setAnimationStore] = useState<IAnimationStore[] | []>([]);
+  const [animationStore, setAnimationStore] = useState<IAnimationStore[]>([]);
   const [goRace] = useFetching(async () => {
-    const response = cars?.cars.map(async (item) => CarService.engineStart(item.id));
-    const result = await Promise.all(response!);
-    const animationData = result.map(
-      (item, index) => (
-        { id: cars?.cars[index].id, speed: Math.ceil(item.distance / item.velocity) }
-      ),
-    );
-    animationData.forEach(async (item, index) => {
-      if (item.id) {
-        const key = String(item.id);
-        frames.current[key] = animation(
-          animationStore[index].carImage!,
-          currentWidthOfTrack,
-          item.speed,
+    if (cars) {
+      const response = cars.cars.map(async (item) => CarService.engineStart(item.id));
+      if (response) {
+        const result = await Promise.all(response);
+        const animationData = result.map(
+          (item, index) => (
+            { id: cars.cars[index].id, speed: Math.ceil(item.distance / item.velocity) }
+          ),
         );
+        animationData.forEach(async (item, index) => {
+          if (item.id) {
+            const key = String(item.id);
+            if (animationStore[index].carImage !== undefined) {
+              frames.current[key] = animation(
+                animationStore[index].carImage,
+                currentWidthOfTrack,
+                item.speed,
+              );
+            }
+          }
+          const mistake = await CarService.driveCar(item.id);
+          if (!mistake && item.id) {
+            cancelAnimationFrame(frames.current[item.id].id);
+          } else if (!boo) {
+            const winner = cars.cars.find((car) => car.id === item.id) as TCar;
+            boo = true;
+            setShowWinnerCar(true);
+            setWinnerCar({ id: item.id, name: winner.name, time: (item.speed / 1000).toFixed(2) });
+            setWinnerCarDataModal(
+              {
+                id: item.id,
+                name: winner.name,
+                time: (item.speed / 1000).toFixed(2),
+              },
+            );
+          }
+        });
       }
-      const mistake = await CarService.driveCar(item.id!);
-      if (!mistake && item.id) {
-        cancelAnimationFrame(frames.current[item.id].id);
-      } else if (!boo) {
-        const winner = cars?.cars.find((car) => car.id === item.id) as TCar;
-        boo = true;
-        setShowWinnerCar(true);
-        setWinnerCar({ id: item.id!, name: winner.name, time: (item.speed / 1000).toFixed(2) });
-        setWinnerCarDataModal(
-          {
-            id: item.id!,
-            name: winner.name,
-            time: (item.speed / 1000).toFixed(2),
-          },
-        );
-      }
-    });
+    }
     const buttons = isButtonStopEngineDisabled.map((el) => ({ ...el, disabled: !el.disabled }));
     setIsButtonStopEngineDisabled(buttons);
   });
 
   const [stopRace] = useFetching(async () => {
     boo = true;
-    cars?.cars.forEach(async (item, index) => {
-      await CarService.engineStop(item.id);
-      cancelAnimationFrame(frames.current[item.id].id);
-      animationStore[index].carImage!.transform = `translateX(${0}px)`;
-    });
+    if (cars) {
+      cars.cars.forEach(async (item, index) => {
+        await CarService.engineStop(item.id);
+        cancelAnimationFrame(frames.current[item.id].id);
+        if (animationStore && animationStore[index].carImage !== undefined) {
+          const currentCar = animationStore[index].carImage;
+          if (currentCar) currentCar.transform = `translateX(${0}px)`;
+        }
+      });
+    }
     const buttons = isButtonStopEngineDisabled.map((el) => ({ ...el, disabled: !el.disabled }));
     setIsButtonStopEngineDisabled(buttons);
   });
@@ -80,7 +89,7 @@ function App() {
   const [createdCar, setCreated] = useState({ name: '', color: '#ffffff' });
   const [updatedCar, setUpdatedCar] = useState<TCar>({ name: '', color: '#ffffff', id: 0 });
 
-  const [getCars, isLoadingCars, errorLoadingCars] = useFetching(async () => {
+  const [getCars] = useFetching(async () => {
     const carsData = await CarService.getCars(currentPage);
     setCars(carsData);
   });
@@ -140,7 +149,7 @@ function App() {
     const currentCarImg = animationStore.find((car) => car.id === id);
     const response = await CarService.engineStart(id);
     const currentSpeed = Math.ceil(response.distance / response.velocity);
-    if (currentCarImg?.carImage) {
+    if (currentCarImg && currentCarImg.carImage) {
       frames.current[id] = animation(currentCarImg.carImage, currentWidthOfTrack, currentSpeed);
     }
     const buttons = isButtonStopEngineDisabled.map(
@@ -161,7 +170,7 @@ function App() {
     const currentCarImg = animationStore.find((car) => car.id === id);
     await CarService.engineStop(id);
     cancelAnimationFrame(frames.current[id].id);
-    if (currentCarImg?.carImage) currentCarImg.carImage.transform = `translateX(${0}px)`;
+    if (currentCarImg && currentCarImg.carImage) currentCarImg.carImage.transform = `translateX(${0}px)`;
     const buttons = isButtonStopEngineDisabled.map(
       (el) => (el.id === id
         ? { ...el, disabled: !el.disabled } : el),
@@ -182,10 +191,8 @@ function App() {
         updatedCar={updatedCar}
         setUpdatedCar={setUpdatedCar}
         handleGenerateCarsButton={handleGenerateCarsButton}
-        currentWidthOfTrack={currentWidthOfTrack}
         setCurrentWidthOfTrack={setCurrentWidthOfTrack}
         isButtonStopEngineDisabled={isButtonStopEngineDisabled}
-        setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
         animationStore={animationStore}
         setAnimationStore={setAnimationStore}
         goRace={goRace}

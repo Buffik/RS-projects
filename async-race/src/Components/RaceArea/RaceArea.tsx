@@ -10,10 +10,8 @@ interface IRaceArea {
   carsData: TCarsData | null
   setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
   getCars: () => Promise<void>
-  currentWidthOfTrack: number
   setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
   isButtonStopEngineDisabled: TButtonStopEngineDisabled | []
-  setIsButtonStopEngineDisabled:React.Dispatch<React.SetStateAction<TButtonStopEngineDisabled | []>>
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
   handleStartEngineButton: (id: number) => Promise<void>
@@ -22,10 +20,8 @@ interface IRaceArea {
 
 function RaceArea({
   currentPage, carsData, setUpdatedCar, getCars,
-  currentWidthOfTrack,
   setCurrentWidthOfTrack,
   isButtonStopEngineDisabled,
-  setIsButtonStopEngineDisabled,
   animationStore, setAnimationStore,
   handleStartEngineButton, handleStopEngineButton,
 }: IRaceArea) {
@@ -53,10 +49,8 @@ function RaceArea({
               carColor={item.color}
               setUpdatedCar={setUpdatedCar}
               getCars={getCars}
-              currentWidthOfTrack={currentWidthOfTrack}
               setCurrentWidthOfTrack={setCurrentWidthOfTrack}
               isButtonStopEngineDisabled={isButtonStopEngineDisabled}
-              setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
               animationStore={animationStore}
               setAnimationStore={setAnimationStore}
               handleStartEngineButton={handleStartEngineButton}

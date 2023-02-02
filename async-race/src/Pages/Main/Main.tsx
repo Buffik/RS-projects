@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { SetStateAction, useEffect, useState } from 'react';
 import CreateCarArea from '../../Components/CreateCar/CreateCarArea';
 import Modal from '../../Components/PurchaseModal/Modal';
@@ -20,10 +19,8 @@ interface IMain {
   updatedCar: TCar
   setUpdatedCar: React.Dispatch<React.SetStateAction<TCar>>
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-  currentWidthOfTrack: number
   setCurrentWidthOfTrack: React.Dispatch<React.SetStateAction<number>>
   isButtonStopEngineDisabled: TButtonStopEngineDisabled | []
-  setIsButtonStopEngineDisabled:React.Dispatch<React.SetStateAction<TButtonStopEngineDisabled | []>>
   animationStore: [] | IAnimationStore[]
   setAnimationStore: React.Dispatch<SetStateAction<[] | IAnimationStore[]>>
   goRace: () => Promise<void>
@@ -46,8 +43,8 @@ function Main({
   setCurrentPage,
   createdCar, setCreated,
   updatedCar, setUpdatedCar,
-  currentWidthOfTrack, setCurrentWidthOfTrack,
-  isButtonStopEngineDisabled, setIsButtonStopEngineDisabled,
+  setCurrentWidthOfTrack,
+  isButtonStopEngineDisabled,
   animationStore, setAnimationStore,
   goRace,
   winnerCarDataModal,
@@ -101,10 +98,8 @@ function Main({
         carsData={cars}
         setUpdatedCar={setUpdatedCar}
         getCars={getCars}
-        currentWidthOfTrack={currentWidthOfTrack}
         setCurrentWidthOfTrack={setCurrentWidthOfTrack}
         isButtonStopEngineDisabled={isButtonStopEngineDisabled}
-        setIsButtonStopEngineDisabled={setIsButtonStopEngineDisabled}
         animationStore={animationStore}
         setAnimationStore={setAnimationStore}
         handleStartEngineButton={handleStartEngineButton}

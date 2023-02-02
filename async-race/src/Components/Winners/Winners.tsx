@@ -87,7 +87,7 @@ function Winners({
         <h2 className={styles.title}>
           Winners
           {' '}
-          {winners?.allCarsCount}
+          {winners && winners.allCarsCount}
         </h2>
         <div className={styles.pageNumberTitle}>
           Page #

@@ -1,5 +1,5 @@
 function animation(
-  elem: CSSStyleDeclaration,
+  elem: CSSStyleDeclaration | undefined,
   distance: number,
   carTime: number,
 ) {
@@ -9,10 +9,10 @@ function animation(
 
   function step(timestamp: number) {
     if (!startAnimation) startAnimation = timestamp;
-    const time = timestamp - startAnimation!;
+    const time = timestamp - startAnimation;
     const passed = Math.round(time * (distance / carTime));
 
-    element.transform = `translateX(${Math.min(passed, distance)}px)`;
+    if (element) element.transform = `translateX(${Math.min(passed, distance)}px)`;
     if (passed < distance) {
       state.id = requestAnimationFrame(step);
     }
