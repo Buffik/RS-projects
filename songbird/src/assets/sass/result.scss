@@ -1,0 +1,18 @@
+//abstracts
+@import 'abstract/mixins';
+@import 'abstract/placeholders';
+@import 'abstract/variables';
+
+//base
+@import 'base/normalize';
+@import 'base/base';
+@import 'base/buttons';
+
+//layouts
+@import 'layouts/wrapper';
+@import 'layouts/footer';
+
+//components
+@import 'components/result/header';
+@import 'components/video';
+@import 'components/result/main';

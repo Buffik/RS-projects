@@ -1,0 +1,45 @@
+.footer {
+  z-index: 10;
+
+  background-color: rgba(44, 121, 128, 0.9);
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__gh {
+    width: 75px;
+    height: 75px;
+    background: url(../media/icons/gh_logo.svg) no-repeat center center;
+    background-size: 60px 60px;
+    @include media-tablet {
+      width: 55px;
+      height: 55px;
+      background-size: 35px 35px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 3rem;
+    @include media-tablet {
+      font-size: 2rem;
+    }
+    @include media-mobile {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__rs {
+    width: 120px;
+    height: 75px;
+    background: url(../media/icons/rs_school_js.svg) no-repeat center center;
+    background-size: 120px 60px;
+    @include media-tablet {
+      width: 80px;
+      height: 55px;
+      background-size: 60px 30px;
+    }
+  }
+}

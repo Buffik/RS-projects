@@ -1,0 +1,48 @@
+html {
+  color: $color-font-main;
+  font-size: 10px;
+  scroll-behavior: smooth;
+  @extend %transition;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @extend %font-prim;
+  @include font($size: 1.6rem, $height: 130%, $weight: 400);
+  color: $color-font-main;
+  margin: auto;
+}
+
+main {
+  flex-grow: 1;
+}
+
+h2 {
+  color: $color-font-main;
+  @include font($size: 4.8rem, $height: 120%, $weight: 400);
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  margin: 0;
+  @include font($size: 3.6rem, $height: 4.2rem, $weight: 400);
+  @include media-tablet {
+    @include font($size: 2rem, $height: 2.7rem, $weight: 700);
+  }
+  @include media-mobile {
+    @include font($size: 1.1rem, $height: 1.32rem, $weight: 700);
+  }
+}
+
+a {
+  color: $color-font-main;
+  @include font($size: 3.6rem, $height: 4.2rem, $weight: 400);
+  @include media-tablet {
+    @include font($size: 2rem, $height: 2.7rem, $weight: 700);
+  }
+}
